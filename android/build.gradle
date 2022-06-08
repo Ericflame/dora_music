@@ -27,7 +27,6 @@ allprojects {
         maven {
             url 'http://download.flutter.io'
         }
-        maven { url 'http://sczpkj.f3322.net:8082/artifactory/android/' }
     }
 }
 
