@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced/generated/assets.dart';
 import 'package:get/get.dart';
 
 import 'bottom_navigationWidget.dart';
@@ -36,7 +37,7 @@ class _guidePageState extends State<guidePage> {
     return Stack(
       children: [
         Image.asset(
-          "assets/images/splash_bg.png",
+          Assets.imagesSplashBg,
           fit: BoxFit.fill,
           width: double.infinity,
           height: double.infinity,

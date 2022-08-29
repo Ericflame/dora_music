@@ -38,7 +38,7 @@ class MenuContainer extends StatelessWidget {
           if (showLogo)
             Positioned(
               child: Image.asset(
-                "assets/images/返回.png",
+                "assets/images/icon_back.png",
                 width: 50,
                 height: 50,
               ),

@@ -84,7 +84,7 @@ class _Add_mediaPageState extends State<Add_mediaPage> {
                 Row(
                   children: [
                     Image.asset(
-                      "assets/images/用户.png",
+                      "assets/images/icon_user.png",
                       width: 30,
                       height: 30,
                     ),

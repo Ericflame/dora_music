@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced/generated/assets.dart';
 import 'package:flutter_advanced/profile/profile_view.dart';
 import 'package:flutter_advanced/video/video_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,14 +23,14 @@ class BottomNavigationWidget extends StatefulWidget {
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> with WidgetsBindingObserver {
   int currentIndex = 0;
   final List<BottomNavigationBarItem> bottomNavbarItems = [];
-  Map<String, String> itemNames = {"home": "首页", "music": "音乐", "add": "添加", "message": "小视频", "my": "个人中心"};
+  Map<String, String> itemNames = {"home": "首页", "music": "音乐", "add": "添加", "message": "小视频", "mine": "个人中心"};
   final List<Widget> pages = [];
 
   @override
   void initState() {
     super.initState();
     itemNames.forEach((key, value) {
-      bottomNavbarItems.add(bottomNavbarItem(value));
+      bottomNavbarItems.add(bottomNavbarItem(key));
     });
     pages..add(HomePage())..add(MusicPage())..add(Add_mediaPage())..add(VideoPage())..add(ProfilePage());
   }
@@ -68,27 +69,27 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> with Wi
   }
 
   BottomNavigationBarItem bottomNavbarItem(String value) {
-    return value == "添加"
+    return value == "add"
         ? BottomNavigationBarItem(
             icon: Image.asset(
-              "assets/images/${value}.png",
+              Assets.imagesIconAdd,
               width: 40,
               height: 40,
             ),
             activeIcon: Image.asset(
-              "assets/images/${value}1.png",
+              Assets.imagesIconAdd1,
               width: 40,
               height: 40,
             ),
             label: "")
         : BottomNavigationBarItem(
             icon: Image.asset(
-              "assets/images/${value}.png",
+              "assets/images/icon_${value}.png",
               width: 24,
               height: 24,
             ),
             activeIcon: Image.asset(
-              "assets/images/${value}1.png",
+              "assets/images/icon_${value}1.png",
               width: 24,
               height: 24,
             ),

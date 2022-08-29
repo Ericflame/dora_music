@@ -44,7 +44,7 @@ class searchView extends StatelessWidget {
           ),
           GestureDetector(
             child: Image.asset(
-              "assets/images/搜索.png",
+              "assets/images/icon_search.png",
               width: 30,
               height: 30,
             ),

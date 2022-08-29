@@ -171,7 +171,7 @@ class Singer_detail_homePage extends StatelessWidget {
         Row(
           children: [
             Image.asset(
-              "assets/images/歌手.png",
+              "assets/images/icon_singer.png",
               width: 18,
               height: 18,
             ),
@@ -197,7 +197,7 @@ class Singer_detail_homePage extends StatelessWidget {
         Row(
           children: [
             Image.asset(
-              "assets/images/歌手.png",
+              "assets/images/icon_singer.png",
               width: 18,
               height: 18,
             ),

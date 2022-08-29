@@ -24,7 +24,7 @@ class HomeLogic extends GetxController with SingleGetTickerProviderMixin {
   RxList<RadioList> radioList = <RadioList>[].obs;
   RxList<SingersList> singersList = <SingersList>[].obs;
   var selectIndex = 0.obs;
-  var selectName = "".obs;
+  var selectName = "全部".obs;
   var limit = 20.obs;
   EasyRefreshController refreshController = EasyRefreshController();
   Map<String, int> singerTypes = {

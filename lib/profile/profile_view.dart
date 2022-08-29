@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced/generated/assets.dart';
 import 'package:get/get.dart';
 
 import '../common/common_widget.dart';
@@ -122,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Row(
                   children: [
                     Image.asset(
-                      "assets/images/用户.png",
+                      Assets.imagesIconUser,
                       width: 30,
                       height: 30,
                     ),

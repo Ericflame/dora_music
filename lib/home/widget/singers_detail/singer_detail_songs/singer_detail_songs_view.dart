@@ -23,7 +23,7 @@ class Singer_detail_songsPage extends StatelessWidget {
           Row(
             children: [
               Image.asset(
-                "assets/images/热门.png",
+                "assets/images/icon_hot.png",
                 width: 20,
                 height: 20,
                 color: Colors.grey,
@@ -37,7 +37,7 @@ class Singer_detail_songsPage extends StatelessWidget {
               ),
               Spacer(),
               Image.asset(
-                "assets/images/配置管理.png",
+                "assets/images/icon_manage.png",
                 width: 15,
                 height: 15,
               ),
@@ -139,7 +139,7 @@ class Singer_detail_songsPage extends StatelessWidget {
               ),
             ),
             Image.asset(
-              "assets/images/视频播放.png",
+              "assets/images/icon_video_start.png",
               width: 23,
               height: 23,
               color: Colors.grey,
@@ -148,7 +148,7 @@ class Singer_detail_songsPage extends StatelessWidget {
               width: 10,
             ),
             Image.asset(
-              "assets/images/更多1.png",
+              "assets/images/icon_more1.png",
               width: 23,
               height: 23,
               color: Colors.grey,

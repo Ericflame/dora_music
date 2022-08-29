@@ -33,10 +33,10 @@ dependencies:
   build_runner: ^1.7.0
   json_serializable: ^6.1.5
 
-  audioplayers: ^0.20.0
   shared_preferences: ^2.0.7
   path_provider: ^2.0.1
 #  flutter_stacky_header: ^0.3.4
+  #  audioplayers: ^0.20.0
   flutter_redux: ^0.5.3
   redux: ^3.0.0
   fluttertoast: ^8.0.9

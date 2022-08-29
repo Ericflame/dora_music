@@ -9,8 +9,8 @@ class HttpOptions{
   // 接收超时时间，单位是毫秒
   static const int RECEIVE_TIMEOUT = 30000;
   // 地址
-  // static const String BASE_URL = "https://musicapi.adicw.cn/";
-  static const String BASE_URL = "https://netease-cloud-music-api-crete722p-hannah-bingo.vercel.app/";
+  static const String BASE_URL = "https://musicapi.adicw.cn/";
+  // static const String BASE_URL = "https://netease-cloud-music-api-crete722p-hannah-bingo.vercel.app/";
   // static const String BASE_URL = "http://localhost:3000/";
 }
 
