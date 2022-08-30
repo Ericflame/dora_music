@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_advanced/generated/assets.dart';
 import 'package:get/get.dart';
 import '../common/singleChoose.dart';
@@ -11,11 +12,22 @@ class VideoPage extends StatefulWidget {
 }
 
 class _VideoPageState extends State<VideoPage> {
-  String applyIndex = "0";
-  String applyValue = "";
-  Map<String, String> applyMap = {"0": "全部", "1": "表计电量"};
-  Map<String, String> eleMap = {"0": "全部", "1": "踏勘申请"};
-  Map<String, String> areaMap = {"0": "全部", "1": "所有区域"};
+  static const platform = MethodChannel('samples.flutter.dev/battery');
+  String _batteryLevel = 'Unknown battery level.';
+
+  Future<void> _getBatteryLevel() async {
+    String batteryLevel;
+    try {
+      final int result = await platform.invokeMethod('getBatteryLevel');
+      batteryLevel = 'Battery level at $result % .';
+    } on PlatformException catch (e) {
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
+
+    setState(() {
+      _batteryLevel = batteryLevel;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,25 +45,15 @@ class _VideoPageState extends State<VideoPage> {
         toolbarHeight: 45,
         title: Text("test", style: TextStyle(fontSize: 14)),
       ),
-      body: Container(
-        margin: EdgeInsets.only(top: 50),
-        child: Stack(
-          children: <Widget>[
-            Positioned.fill(
-              child: Image.asset(Assets.imagesBg),
-            ),
-            Positioned.fill(
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  splashColor: Color(0X40FFFFFF),
-                  highlightColor: Colors.transparent,
-                  onTap: () {},
-                ),
-              ),
-            )
-          ],
-        )
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ElevatedButton(
+            onPressed: _getBatteryLevel,
+            child: const Text('Get Battery Level'),
+          ),
+          Text(_batteryLevel),
+        ],
       ),
     );
   }
