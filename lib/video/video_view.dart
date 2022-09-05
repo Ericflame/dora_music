@@ -1,10 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_advanced/generated/assets.dart';
-import 'package:get/get.dart';
-import '../common/singleChoose.dart';
-import 'video_logic.dart';
 
 class VideoPage extends StatefulWidget {
   @override
@@ -12,22 +8,29 @@ class VideoPage extends StatefulWidget {
 }
 
 class _VideoPageState extends State<VideoPage> {
-  static const platform = MethodChannel('samples.flutter.dev/battery');
+  static const platform = MethodChannel('samples');//通道名称初始化
   String _batteryLevel = 'Unknown battery level.';
 
+  //异步任务，通过平台通道与特定平台进行通信，获取原生代码中获取电量部分的代码，这里的宿主平台是 Android
   Future<void> _getBatteryLevel() async {
     String batteryLevel;
     try {
       final int result = await platform.invokeMethod('getBatteryLevel');
-      batteryLevel = 'Battery level at $result % .';
+      batteryLevel = '电量为：$result % .';
     } on PlatformException catch (e) {
-      batteryLevel = "Failed to get battery level: '${e.message}'.";
+      batteryLevel = "获取电量失败: '${e.message}'.";
     }
-
     setState(() {
       _batteryLevel = batteryLevel;
     });
   }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +53,7 @@ class _VideoPageState extends State<VideoPage> {
         children: [
           ElevatedButton(
             onPressed: _getBatteryLevel,
-            child: const Text('Get Battery Level'),
+            child: const Text('获取电量'),
           ),
           Text(_batteryLevel),
         ],

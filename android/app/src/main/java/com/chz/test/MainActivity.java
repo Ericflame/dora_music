@@ -14,15 +14,17 @@ import androidx.annotation.Nullable;
 
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugins.GeneratedPluginRegistrant;
 
 public class MainActivity extends FlutterActivity {
-    private static final String CHANNEL = "samples.flutter.dev/battery";
+    private static final String CHANNEL = "samples";
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        getBatteryLevel();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -31,10 +33,8 @@ public class MainActivity extends FlutterActivity {
         new MethodChannel(flutterEngine.getDartExecutor(), CHANNEL)
                 .setMethodCallHandler(
                         (call, result) -> {
-                            // This method is invoked on the main thread.
                             if (call.method.equals("getBatteryLevel")) {
                                 int batteryLevel = getBatteryLevel();
-
                                 if (batteryLevel != -1) {
                                     result.success(batteryLevel);
                                 } else {
@@ -47,6 +47,7 @@ public class MainActivity extends FlutterActivity {
                 );
     }
 
+    //获取电量
     private int getBatteryLevel() {
         int batteryLevel = -1;
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
