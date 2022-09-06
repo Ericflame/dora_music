@@ -55,14 +55,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static const platform = MethodChannel('samples');//通道名称初始化
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _initAMap();
     // 延迟进入主页
     // Future.delayed(Duration(seconds: 3), () async {
     //   Get.off(() => BottomNavigationWidget());
     // });
+  }
+  //高德地图初始化
+  _initAMap()async{
+    print("初始化map");
+    await MethodChannel('samples')
+        .invokeMethod('setApiKey', {"key": "83aec091225343bdcac57b1e76b61bbf"});
+    await MethodChannel('samples')
+        .invokeMethod('updatePrivacyStatement');
   }
 
   @override
