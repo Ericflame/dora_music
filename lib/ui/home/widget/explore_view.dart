@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../bean/mv_top.dart';
-import '../../bean/play_list.dart';
-import '../../bean/radio_list.dart';
+import '../../../bean/mv_top.dart';
+import '../../../bean/play_list.dart';
+import '../../../bean/radio_list.dart';
 import '../home_logic.dart';
 
 class ExploreView extends StatefulWidget {

@@ -1,12 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced/music/widget/pic_vertify_test.dart';
-import 'package:flutter_advanced/music/widget/slide_vertify_test.dart';
+import 'package:flutter_advanced/ui/music/widget/slide_vertify_test.dart';
 import 'package:get/get.dart';
 import 'package:hb_check_code/hb_check_code.dart';
 
 import 'music_logic.dart';
+
 
 class MusicPage extends StatefulWidget {
   @override

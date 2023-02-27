@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import '../constant.dart';
 import 'http_exception.dart';
 
 // 自定义拦截器
@@ -10,6 +11,9 @@ class HttpInterceptor extends Interceptor {
       RequestOptions options,
       RequestInterceptorHandler handler,
       ) {
+    // options.headers["Authorization"] = "Bearer " + (Constant.accessToken ?? "");
+    // options.headers["cid"] = Constant.userInfo.oid ?? "";
+    // options.headers["province-code"] = "510000";
     super.onRequest(options, handler);
   }
 
@@ -32,7 +36,6 @@ class HttpInterceptor extends Interceptor {
     // 覆盖异常为自定义的异常类
     HttpException httpException = HttpException.create(err);
     err.error = httpException;
-
     super.onError(err, handler);
   }
 }

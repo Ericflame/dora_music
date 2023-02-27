@@ -3,10 +3,10 @@ import 'package:flutter_advanced/http/service.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-import '../bean/mv_top.dart';
-import '../bean/play_list.dart';
-import '../bean/radio_list.dart';
-import '../bean/singers_list.dart';
+import '../../bean/mv_top.dart';
+import '../../bean/play_list.dart';
+import '../../bean/radio_list.dart';
+import '../../bean/singers_list.dart';
 
 class HomeLogic extends GetxController with SingleGetTickerProviderMixin {
   // List<String> tabs = ["歌曲","歌曲","歌曲","歌曲","歌曲","歌曲"];

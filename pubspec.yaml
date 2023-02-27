@@ -29,15 +29,13 @@ dependencies:
   # 底部扩散模糊动画
   ripple_backdrop_animate_route: ^0.2.0
   # json转model
-  json_annotation: ^4.4.0
-  build_runner: ^1.7.0
-  json_serializable: ^6.1.5
+  json_annotation: ^4.1.0
+  build_runner: 1.12.2
+  json_serializable: 4.1.4
   # 通信
   web_socket_channel: ^1.2.0
   shared_preferences: ^2.0.7
   path_provider: ^2.0.1
-#  flutter_stacky_header: ^0.3.4
-  #  audioplayers: ^0.20.0
   flutter_redux: ^0.5.3
   redux: ^3.0.0
   fluttertoast: ^8.0.9
@@ -46,11 +44,14 @@ dependencies:
   flustars: ^2.0.1
   floor: 1.1.0
   cached_network_image: ^3.1.0
-#  flutter_inappwebview: ^5.3.2
-#  webview_flutter: 0.3.22+1
+  #http缓存
+  dio_http_cache: 0.3.0
   hb_check_code: ^0.0.1
+  flutter_easyloading: ^3.0.5
+  permission_handler: 8.3.0
   flutter_picker:
     git: http://github.com/yangyxd/flutter_picker.git
+
 
 
 dev_dependencies:

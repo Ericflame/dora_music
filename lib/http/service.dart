@@ -1,4 +1,5 @@
 import 'package:flutter_advanced/constant.dart';
+import 'package:flutter_advanced/http/httpRequest.dart';
 
 import '../bean/common_response.dart';
 import '../bean/mv_top.dart';
@@ -21,9 +22,9 @@ import 'http.dart';
 class Service {
   /// mv 排行
   static Future getSongs(int param) async {
-    final response = await Http.get(
+    final response = await HttpRequest().futureGet(
       API.getMvTop,
-      params: {'limit': param},
+      queryParameters: {'limit': param},
     );
     CommonResponse result = CommonResponse.fromJson(response, (json) => json);
     List<MvTop> data =
@@ -32,9 +33,9 @@ class Service {
   }
   /// 获取精品歌单
   static Future getPlayList(int param) async {
-    final response = await Http.get(
+    final response = await HttpRequest().futureGet(
       API.getPlayList,
-      params: {'limit': param},
+      queryParameters: {'limit': param},
     );
     PlayListResponse result = PlayListResponse.fromJson(response, (json) => json);
     List<PlayList> data =
@@ -43,9 +44,9 @@ class Service {
   }
   /// 获取电台列表
   static Future getRadioList() async {
-    final response = await Http.get(
+    final response = await HttpRequest().futureGet(
       API.getRadioList,
-      params: {},
+      queryParameters: {},
     );
     RadioListResponse result = RadioListResponse.fromJson(response, (json) => json);
     List<RadioList> data =
@@ -54,9 +55,9 @@ class Service {
   }
   /// 获取歌手列表
   static Future getSingersList(int limit,int type,int area) async {
-    final response = await Http.get(
+    final response = await HttpRequest().futureGet(
       API.getSingersList,
-      params: {'limit': limit,'type': type,'area': area},
+      queryParameters: {'limit': limit,'type': type,'area': area},
     );
     SingersListResponse result = SingersListResponse.fromJson(response, (json) => json);
     List<SingersList> data =
@@ -65,9 +66,9 @@ class Service {
   }
   /// 获取歌手详情
   static Future getSingersDetails(int id) async {
-    final response = await Http.get(
+    final response = await HttpRequest().futureGet(
       API.getSingersDetails,
-      params: {'id': id},
+      queryParameters: {'id': id},
     );
     SingersDetailResponse result = SingersDetailResponse.fromJson(response, (json) => json);
     return result;
@@ -75,9 +76,9 @@ class Service {
 
   /// 获取歌手详细详情
   static Future getSingerDetails(int id) async {
-    final response = await Http.get(
+    final response = await HttpRequest().futureGet(
       API.getSingerDetails,
-      params: {'id': id},
+      queryParameters: {'id': id},
     );
     SingerDetailResponse result = SingerDetailResponse.fromJson(response, (json) => json);
     List<SingerDetails> data =
@@ -87,9 +88,9 @@ class Service {
 
   ///  获取歌手专辑
   static Future getSingerAlbum(int id,int limit) async {
-    final response = await Http.get(
+    final response = await HttpRequest().futureGet(
       API.getSingerAlbum,
-      params: {'id': id,"limit":limit},
+      queryParameters: {'id': id,"limit":limit},
     );
     SingerAlbumResponse result = SingerAlbumResponse.fromJson(response, (json) => json);
     List<SingerHotAlbum> data =
@@ -99,9 +100,9 @@ class Service {
 
   ///  获取歌手Mv
   static Future getSingerMv(int id) async {
-    final response = await Http.get(
+    final response = await HttpRequest().futureGet(
       API.getSingerMv,
-      params: {'id': id},
+      queryParameters: {'id': id},
     );
     SingersMvResponse result = SingersMvResponse.fromJson(response, (json) => json);
     List<Mvs> data =

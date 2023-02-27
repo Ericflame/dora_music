@@ -3,16 +3,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/generated/assets.dart';
-import 'package:flutter_advanced/profile/profile_view.dart';
-import 'package:flutter_advanced/video/video_view.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_screenutil/screenutil.dart';
-import 'package:get/get.dart';
-
+import 'package:flutter_advanced/ui/music/music_view.dart';
+import 'package:flutter_advanced/ui/profile/profile_view.dart';
+import 'package:flutter_advanced/ui/video/video_view.dart';
 import 'add_media/add_media_view.dart';
 import 'home/home_view.dart';
 import 'music/music_view.dart';
-
 bool showFileUploadingOverlay = false;
 
 class BottomNavigationWidget extends StatefulWidget {

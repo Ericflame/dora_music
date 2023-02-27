@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../bean/hot_song.dart';
-import '../../../../bean/singer_details.dart';
+import '../../../../../bean/hot_song.dart';
+import '../../../../../bean/singer_details.dart';
 import '../singers_detail_logic.dart';
 
 class Singer_detail_homePage extends StatelessWidget {

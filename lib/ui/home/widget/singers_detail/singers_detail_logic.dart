@@ -3,11 +3,11 @@ import 'package:flutter_advanced/bean/mvs.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-import '../../../bean/hot_song.dart';
-import '../../../bean/singer_details.dart';
-import '../../../bean/singer_hot_album.dart';
-import '../../../bean/singers_details.dart';
-import '../../../http/service.dart';
+import '../../../../bean/hot_song.dart';
+import '../../../../bean/singer_details.dart';
+import '../../../../bean/singer_hot_album.dart';
+import '../../../../bean/singers_details.dart';
+import '../../../../http/service.dart';
 
 class Singers_detailLogic extends GetxController with SingleGetTickerProviderMixin{
   var artistId = 0.obs;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../common/common_widget.dart';
+import '../../common/common_widget.dart';
 import 'add_media_logic.dart';
 import 'enum_test.dart';
 

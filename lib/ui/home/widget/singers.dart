@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced/home/widget/singers_detail/singers_detail_view.dart';
+import 'package:flutter_advanced/ui/home/widget/singers_detail/singers_detail_view.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-import '../../bean/singers_list.dart';
-import '../../common/E3Classical.dart';
+import '../../../bean/singers_list.dart';
+import '../../../common/E3Classical.dart';
 import '../home_logic.dart';
 
 class SingersView extends StatefulWidget {

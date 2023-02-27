@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/config/app_colors.dart';
-import 'package:flutter_advanced/home/widget/explore_view.dart';
-import 'package:flutter_advanced/home/widget/music_cloud.dart';
-import 'package:flutter_advanced/home/widget/search_view.dart';
-import 'package:flutter_advanced/home/widget/singers.dart';
-import 'package:flutter_advanced/home/widget/songs.dart';
+import 'package:flutter_advanced/ui/home/widget/explore_view.dart';
+import 'package:flutter_advanced/ui/home/widget/music_cloud.dart';
+import 'package:flutter_advanced/ui/home/widget/search_view.dart';
+import 'package:flutter_advanced/ui/home/widget/singers.dart';
+import 'package:flutter_advanced/ui/home/widget/songs.dart';
 import 'package:get/get.dart';
 
 import 'home_logic.dart';

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:floor/floor.dart';
-import 'package:flutter_advanced/music/person_dao.dart';
+import 'package:flutter_advanced/ui/music/person_dao.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
-import '../music/entity/person.dart';
+import 'entity/person.dart';
 
 // part 'app_data_base.g.dart';
 
