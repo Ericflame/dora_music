@@ -17,12 +17,11 @@ import '../bean/singers_details_response.dart';
 import '../bean/singers_list.dart';
 import '../bean/singers_list_response.dart';
 import '../bean/singers_mvs_response.dart';
-import 'http.dart';
 
 class Service {
   /// mv 排行
   static Future getSongs(int param) async {
-    final response = await HttpRequest().futureGet(
+    final response = await HttpRequest.getInstance().futureGet(
       API.getMvTop,
       queryParameters: {'limit': param},
     );
@@ -33,7 +32,7 @@ class Service {
   }
   /// 获取精品歌单
   static Future getPlayList(int param) async {
-    final response = await HttpRequest().futureGet(
+    final response = await HttpRequest.getInstance().futureGet(
       API.getPlayList,
       queryParameters: {'limit': param},
     );
@@ -44,7 +43,7 @@ class Service {
   }
   /// 获取电台列表
   static Future getRadioList() async {
-    final response = await HttpRequest().futureGet(
+    final response = await HttpRequest.getInstance().futureGet(
       API.getRadioList,
       queryParameters: {},
     );
@@ -55,7 +54,7 @@ class Service {
   }
   /// 获取歌手列表
   static Future getSingersList(int limit,int type,int area) async {
-    final response = await HttpRequest().futureGet(
+    final response = await HttpRequest.getInstance().futureGet(
       API.getSingersList,
       queryParameters: {'limit': limit,'type': type,'area': area},
     );
@@ -66,7 +65,7 @@ class Service {
   }
   /// 获取歌手详情
   static Future getSingersDetails(int id) async {
-    final response = await HttpRequest().futureGet(
+    final response = await HttpRequest.getInstance().futureGet(
       API.getSingersDetails,
       queryParameters: {'id': id},
     );
@@ -76,7 +75,7 @@ class Service {
 
   /// 获取歌手详细详情
   static Future getSingerDetails(int id) async {
-    final response = await HttpRequest().futureGet(
+    final response = await HttpRequest.getInstance().futureGet(
       API.getSingerDetails,
       queryParameters: {'id': id},
     );
@@ -88,7 +87,7 @@ class Service {
 
   ///  获取歌手专辑
   static Future getSingerAlbum(int id,int limit) async {
-    final response = await HttpRequest().futureGet(
+    final response = await HttpRequest.getInstance().futureGet(
       API.getSingerAlbum,
       queryParameters: {'id': id,"limit":limit},
     );
@@ -100,7 +99,7 @@ class Service {
 
   ///  获取歌手Mv
   static Future getSingerMv(int id) async {
-    final response = await HttpRequest().futureGet(
+    final response = await HttpRequest.getInstance().futureGet(
       API.getSingerMv,
       queryParameters: {'id': id},
     );

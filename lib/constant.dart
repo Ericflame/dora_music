@@ -1,7 +1,7 @@
 class Constant {
   // static String baseUrl = "https://netease-cloud-music-api-crete722p-hannah-bingo.vercel.app";
   // static String baseUrl = "http://localhost:3000/";
-  static String baseUrl = "https://musicapi.adicw.cn/";
+  static String baseUrl = "https://musicapi.adicw.cn";
 }
 
 class API{
@@ -13,6 +13,4 @@ class API{
   static String getSingerDetails = Constant.baseUrl + "/artist/desc";//获取歌手详细信息
   static String getSingerAlbum = Constant.baseUrl + "/artist/album";//获取歌手专辑信息
   static String getSingerMv = Constant.baseUrl + "/artist/mv";//获取歌手Mv信息
-
-
 }
