@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../common/common_widget.dart';
 import 'add_media_logic.dart';
+import 'enum_test.dart';
 
 class Add_mediaPage extends StatefulWidget {
 
@@ -12,6 +13,17 @@ class Add_mediaPage extends StatefulWidget {
 
 class _Add_mediaPageState extends State<Add_mediaPage> {
   final logic = Get.put(Add_mediaLogic());
+  HomeItemType test = HomeItemType.approval;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    switch(test){
+      case HomeItemType.approval:
+        print('春天');
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {

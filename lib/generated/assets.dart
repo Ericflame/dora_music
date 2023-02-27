@@ -21,6 +21,8 @@ class Assets {
   static const String imagesIconMusic = 'assets/images/icon_music.png';
   static const String imagesIconMusic1 = 'assets/images/icon_music1.png';
   static const String imagesIconProgress = 'assets/images/icon_progress.png';
+  static const String imagesIconRight = 'assets/images/icon_right.png';
+  static const String imagesIconSafe = 'assets/images/icon_safe.png';
   static const String imagesIconSearch = 'assets/images/icon_search.png';
   static const String imagesIconSinger = 'assets/images/icon_singer.png';
   static const String imagesIconStart = 'assets/images/icon_start.png';
@@ -29,6 +31,7 @@ class Assets {
   static const String imagesIconVideo1 = 'assets/images/icon_video1.png';
   static const String imagesIconVideoStart = 'assets/images/icon_video_start.png';
   static const String imagesLogo = 'assets/images/logo.png';
+  static const String imagesSearch = 'assets/images/search.png';
   static const String imagesSplashBg = 'assets/images/splash_bg.png';
 
 }

@@ -300,13 +300,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.2.1"
-  flutter_inappwebview:
-    dependency: "direct main"
-    description:
-      name: flutter_inappwebview
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "5.4.3+7"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -373,6 +366,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.0"
+  hb_check_code:
+    dependency: "direct main"
+    description:
+      name: hb_check_code
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.2"
   html:
     dependency: transitive
     description:
@@ -708,7 +708,7 @@ packages:
       name: shelf_web_socket
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.1"
+    version: "0.2.4+1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -890,19 +890,12 @@ packages:
     source: hosted
     version: "1.0.1"
   web_socket_channel:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: web_socket_channel
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.0"
-  webview_flutter:
-    dependency: "direct main"
-    description:
-      name: webview_flutter
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.22+1"
+    version: "1.2.0"
   win32:
     dependency: transitive
     description:

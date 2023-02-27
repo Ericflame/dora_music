@@ -1,0 +1,33 @@
+# 自动打包上传配置
+# 打包命令 $ flutter_distributor release --name daily
+# 如未安装 flutter_distributor 则执行以下命令安装
+# $ dart pub global activate flutter_distributor
+# $ export PATH="$PATH":"$HOME/.pub-cache/bin"
+# 文档地址 https://distributor.leanflutter.org/v/zh/
+output: build/
+env:
+  PGYER_API_KEY: '7139cf445ca857b6471c******'
+releases:
+  - name: dev
+    jobs:
+      - name: release-dev-android
+        package:
+          platform: android
+          target: apk
+          build_args:
+            target: lib/main.dart
+            target-platform: android-arm,android-arm64
+            no-tree-shake-icons: ''
+            no-sound-null-safety: ''
+        # 当你不需要发布到分发平台，请删除 publish_to 字段
+#        publish_to: pgyer
+      - name: release-dev-ios
+        package:
+          platform: ios
+          target: ipa
+          build_args:
+            target: lib/main.dart
+            export-options-plist: ios/ExportOptions.plist
+            no-tree-shake-icons: ''
+            no-sound-null-safety: ''
+#        publish_to: pgyer
