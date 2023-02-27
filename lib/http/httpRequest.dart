@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
@@ -95,7 +96,6 @@ class HttpRequest {
       (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) {
         SecurityContext sc = SecurityContext.defaultContext;
         HttpClient httpClient = HttpClient(context: sc);
-
         //域名模式不走这里，只有ip会走
         httpClient.badCertificateCallback = (X509Certificate cert, String host, int port) {
           if (_verifyCer && Platform.isAndroid) {
@@ -114,12 +114,15 @@ class HttpRequest {
         return httpClient;
       };
     }
+    /// 增加拦截器 (接口请求前数据处理:onRequest;接口成功返回时处理:onResponse;接口报错时处理:onError)
     dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
       print('send request：path:${options.path}，baseURL:${options.baseUrl}');
       return handler.next(options);
     }));
-    dio.interceptors.add(LogInterceptor(responseBody: true)); //是否开启请求日志
+    /// 是否开启请求日志
+    dio.interceptors.add(LogInterceptor(responseBody: true));
 
+    /// 签名拦截器
     // dio.interceptors.add(SignInterceptor(
     //     parmaSign: _parmaSign,
     //     preventRepeatRequest: _preventRepeatRequest,
@@ -134,6 +137,7 @@ class HttpRequest {
         dio.interceptors.add(interceptorsWrapper);
       }
     }
+    /// 缓存插件
     dio.interceptors.add(DioCacheManager(CacheConfig(baseUrl: _baseUrl)).interceptor);
     if (isDebug) {
       dio.interceptors.add(PrettyDioLogger(
