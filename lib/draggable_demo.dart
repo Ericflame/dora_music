@@ -1,23 +1,22 @@
 import 'package:draggable_widget/draggable_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'add_media_logic.dart';
+import 'package:flutter_advanced/generated/assets.dart';
 
-class Add_mediaPage extends StatefulWidget {
+/// File Name: draggable_demo
+/// Project Name: flutter_test
+/// Created By Hongzhang Chen On 2023-03-07
+/// Copy Right ©2023-03-07 flutter_test All Right Reserved
+///
+
+class DraggableDemo extends StatefulWidget {
+  const DraggableDemo({Key? key}) : super(key: key);
+
   @override
-  _Add_mediaPageState createState() => _Add_mediaPageState();
+  State<DraggableDemo> createState() => _DraggableDemoState();
 }
 
-class _Add_mediaPageState extends State<Add_mediaPage> {
-  final logic = Get.put(Add_mediaLogic());
+class _DraggableDemoState extends State<DraggableDemo> {
   final dragController = DragController();
-  final GlobalKey _parentKey = GlobalKey();
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,15 +84,11 @@ class _Add_mediaPageState extends State<Add_mediaPage> {
             shadowBorderRadius: 50,
             child: Container(
               height: 100,
-              width: 200,
+              width: 100,
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Stack(
-                children: [
-                  IconButton(icon: Icon(Icons.close), onPressed: () {})
-                ],
-              ),
+              child: Image.asset(Assets.imagesBasketball),
             ),
             initialPosition: AnchoringPosition.bottomLeft,
             dragController: dragController,

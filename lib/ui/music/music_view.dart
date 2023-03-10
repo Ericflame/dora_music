@@ -1,13 +1,11 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/ui/music/widget/slide_vertify_test.dart';
 import 'package:get/get.dart';
 import 'package:hb_check_code/hb_check_code.dart';
-
 import 'music_logic.dart';
 
-
+///滑块验证码
 class MusicPage extends StatefulWidget {
   @override
   State<MusicPage> createState() => _MusicPageState();
@@ -16,7 +14,7 @@ class MusicPage extends StatefulWidget {
 class _MusicPageState extends State<MusicPage> {
   final logic = Get.put(MusicLogic());
   TextEditingController searchController = TextEditingController();
-  bool isShowPic = false;
+  bool showPic = false;
   String hint = "";
   String code = "";
 
@@ -39,8 +37,9 @@ class _MusicPageState extends State<MusicPage> {
           ),
           Center(
             child: SlideVerifyWidget(
-                backgroundColor: Color(0xff91d5ff),
-                slideColor: Color(0xff40a9ff),
+                backgroundColor: Color(0xffe8e8e8),
+                slideColor: Color(0xff7ac336),
+                borderColor: Colors.white,
                 verifySuccessListener: () {
                   showDialog(
                       context: context,
@@ -94,7 +93,7 @@ class _MusicPageState extends State<MusicPage> {
                                                     state(() {
                                                       if (searchController.text == code) {
                                                         hint = "验证码识别成功";
-                                                        isShowPic = true;
+                                                        showPic = true;
                                                       } else {
                                                         hint = "验证码错误";
                                                         code = "";
@@ -113,7 +112,7 @@ class _MusicPageState extends State<MusicPage> {
                                                     state(() {
                                                       if (searchController.text == code) {
                                                         hint = "验证码识别成功";
-                                                        isShowPic = true;
+                                                        showPic = true;
                                                       } else {
                                                         hint = "验证码错误";
                                                         code = "";
@@ -134,7 +133,7 @@ class _MusicPageState extends State<MusicPage> {
                                           ),
                                           SizedBox(height: 20),
                                           Offstage(
-                                              offstage: isShowPic,
+                                              offstage: showPic,
                                               child: GestureDetector(
                                                 onTap: () {
                                                   state(() {

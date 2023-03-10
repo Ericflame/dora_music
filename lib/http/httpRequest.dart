@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
+// import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flustars/flustars.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dio_logger.dart';
@@ -138,7 +138,7 @@ class HttpRequest {
       }
     }
     /// 缓存插件
-    dio.interceptors.add(DioCacheManager(CacheConfig(baseUrl: _baseUrl)).interceptor);
+    // dio.interceptors.add(DioCacheManager(CacheConfig(baseUrl: _baseUrl)).interceptor);
     if (isDebug) {
       dio.interceptors.add(PrettyDioLogger(
           requestHeader: true,

@@ -37,7 +37,7 @@ class Singer_detail_homePage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {},
                         child: Container(
-                          padding: EdgeInsets.only(left: 3, right: 3, top: 0, bottom: 0),
+                          padding: EdgeInsets.only(left: 6, right: 6, top: 1, bottom: 1),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(20.0)),
                               border: new Border.all(width: 1, color: Colors.grey)),
@@ -125,7 +125,7 @@ class Singer_detail_homePage extends StatelessWidget {
                               });
                         },
                         child: Container(
-                          padding: EdgeInsets.only(left: 3, right: 3, top: 0, bottom: 0),
+                          padding: EdgeInsets.only(left: 6, right: 6, top: 1, bottom: 1),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(20.0)),
                               border: new Border.all(width: 1, color: Colors.grey)),

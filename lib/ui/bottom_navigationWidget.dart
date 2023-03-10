@@ -2,13 +2,16 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_advanced/generated/assets.dart';
 import 'package:flutter_advanced/ui/music/music_view.dart';
 import 'package:flutter_advanced/ui/profile/profile_view.dart';
 import 'package:flutter_advanced/ui/video/video_view.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'add_media/add_media_view.dart';
 import 'home/home_view.dart';
 import 'music/music_view.dart';
+
 bool showFileUploadingOverlay = false;
 
 class BottomNavigationWidget extends StatefulWidget {
@@ -21,6 +24,8 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> with Wi
   final List<BottomNavigationBarItem> bottomNavbarItems = [];
   Map<String, String> itemNames = {"home": "首页", "music": "音乐", "add": "添加", "message": "小视频", "mine": "个人中心"};
   final List<Widget> pages = [];
+  Timer? logoutTimer;
+  DateTime? lastTime;
 
   @override
   void initState() {
@@ -28,7 +33,12 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> with Wi
     itemNames.forEach((key, value) {
       bottomNavbarItems.add(bottomNavbarItem(key));
     });
-    pages..add(HomePage())..add(MusicPage())..add(Add_mediaPage())..add(VideoPage())..add(ProfilePage());
+    pages
+      ..add(HomePage())
+      ..add(MusicPage())
+      ..add(Add_mediaPage())
+      ..add(VideoPage())
+      ..add(ProfilePage());
   }
 
   @override
@@ -38,23 +48,42 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> with Wi
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: IndexedStack(
-              index: currentIndex,
-              children: pages,
+    return WillPopScope(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              child: IndexedStack(
+                index: currentIndex,
+                children: pages,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: bottomNavbarItems,
+          currentIndex: currentIndex,
+          onTap: onTabClick,
+          type: BottomNavigationBarType.fixed,
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: bottomNavbarItems,
-        currentIndex: currentIndex,
-        onTap: onTabClick,
-        type: BottomNavigationBarType.fixed,
-      ),
+      onWillPop: () async {
+        // 点击返回键的操作
+        if (lastTime == null || DateTime.now().difference(lastTime!) > Duration(seconds: 2)) {
+          lastTime = DateTime.now();
+          Fluttertoast.showToast(msg: "再按一次退出APP");
+          return false;
+        } else {
+          lastTime = DateTime.now();
+          // 退出app
+          if (Platform.isAndroid) {
+            SystemNavigator.pop();
+          } else {
+            exit(0);
+          }
+          return true;
+        }
+      },
     );
   }
 

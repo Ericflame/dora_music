@@ -112,7 +112,7 @@ class SlideVerifyState extends State<SlideVerifyWidget> with TickerProviderState
         width: width,
         decoration: BoxDecoration(
             color: widget.backgroundColor,
-            border: Border.all(color: widget.borderColor),
+            border: Border.all(color: Color(0xffe8e8e8)),
             /// 圆角实现
             borderRadius: BorderRadius.all(new Radius.circular(height))
         ),
@@ -134,7 +134,7 @@ class SlideVerifyState extends State<SlideVerifyWidget> with TickerProviderState
               ),
             ),
             Center(
-              child: Text(verifySuccess?"验证成功":"          请按住滑块，拖动到最右边", style: TextStyle(color: verifySuccess?Colors.white:Colors.black54, fontSize: 14),),
+              child: Text(verifySuccess?"验证成功":"               请按住滑块，拖动到最右边", style: TextStyle(color: verifySuccess?Colors.white:Colors.black54, fontSize: 12),),
             ),
             Positioned(
               top: 0,
@@ -155,13 +155,13 @@ class SlideVerifyState extends State<SlideVerifyWidget> with TickerProviderState
                   children: <Widget>[
                     SizedBox(width: 6,),
                     Image(image: AssetImage(Assets.imagesIconSafe), height: 24, width: 24,),
-                    Image(image: AssetImage(Assets.imagesIconRight), height: 16, width: 16,),
+                    Image(image: AssetImage(Assets.imagesIconRight), height: 16, width: 16,color: Colors.black54,),
                     // Image.asset(Assets.imagesIconSafe, height: 24, width: 24,),
                     // Image.asset(Assets.imagesIconRight, height: 16, width: 16,),
                     /// 因为向右箭头有透明边距导致两个箭头间隔过大，因此将第二个箭头向左偏移，如果切图无边距则不用偏移
                     Transform(
                       transform: Matrix4.translationValues(-8, 0, 0),
-                      child: Image(image: AssetImage(Assets.imagesIconRight), height: 16, width: 16,),
+                      child: Image(image: AssetImage(Assets.imagesIconRight), height: 16, width: 16,color: Colors.black54,),
                     ),
                   ],
                 ),

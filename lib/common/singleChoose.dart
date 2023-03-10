@@ -24,7 +24,7 @@ class PickerDateTimeType {
 showSingleChoose(BuildContext context, List<String> list, Function callBack,
     {String cancelText = "取消", Function? cacelCallBack}) {
   Picker picker = new Picker(
-      adapter: PickerDataAdapter<String>(pickerdata: list),
+      adapter: PickerDataAdapter<String>(pickerData: list),
       changeToFirst: true,
       textAlign: TextAlign.left,
       height: 160,

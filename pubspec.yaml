@@ -30,10 +30,10 @@ dependencies:
   ripple_backdrop_animate_route: ^0.2.0
   # json转model
   json_annotation: ^4.1.0
-  build_runner: 1.12.2
-  json_serializable: 4.1.4
+  json_serializable: 6.6.1
+  build_runner: 2.3.3
   # 通信
-  web_socket_channel: ^1.2.0
+  web_socket_channel: ^2.0.0
   shared_preferences: ^2.0.7
   path_provider: ^2.0.1
   flutter_redux: ^0.5.3
@@ -45,10 +45,11 @@ dependencies:
   floor: 1.1.0
   cached_network_image: ^3.1.0
   #http缓存
-  dio_http_cache: 0.3.0
+#  dio_http_cache: 0.3.0
   hb_check_code: ^0.0.1
   flutter_easyloading: ^3.0.5
   permission_handler: 8.3.0
+  draggable_widget: ^2.0.0
   flutter_picker:
     git: http://github.com/yangyxd/flutter_picker.git
 
