@@ -2,20 +2,27 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../bean/mv_top.dart';
-import '../../../bean/play_list.dart';
-import '../../../bean/radio_list.dart';
-import '../home_logic.dart';
+import '../../../../bean/mv_top.dart';
+import '../../../../bean/play_list.dart';
+import '../../../../bean/radio_list.dart';
+import 'explore_logic.dart';
+import 'explore_state.dart';
 
 class ExploreView extends StatefulWidget {
-
   @override
   _ExploreViewState createState() => _ExploreViewState();
 }
 
 class _ExploreViewState extends State<ExploreView> {
-  final logic = Get.put(HomeLogic());
+  final logic = Get.put(ExploreLogic());
+  ExploreState state = ExploreState();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    state = logic.state;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,7 +68,7 @@ class _ExploreViewState extends State<ExploreView> {
                         physics: new NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.only(top: 0),
                         shrinkWrap: true,
-                        itemCount: logic.topMvList.length,
+                        itemCount: state.topMvList.length,
                         itemBuilder: SongItem)
                   ],
                 ),
@@ -104,7 +111,7 @@ class _ExploreViewState extends State<ExploreView> {
                         physics: new NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.only(top: 0),
                         shrinkWrap: true,
-                        itemCount: logic.playList.length,
+                        itemCount: state.playList.length,
                         itemBuilder: playListItem)
                   ],
                 ),
@@ -147,7 +154,7 @@ class _ExploreViewState extends State<ExploreView> {
                         physics: new NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.only(top: 0),
                         shrinkWrap: true,
-                        itemCount: logic.radioList.length,
+                        itemCount: state.radioList.length,
                         itemBuilder: radioListItem)
                   ],
                 ),
@@ -160,7 +167,7 @@ class _ExploreViewState extends State<ExploreView> {
   }
 
   Widget SongItem(BuildContext context, int index) {
-    MvTop data = logic.topMvList[index];
+    MvTop data = state.topMvList[index];
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -253,7 +260,7 @@ class _ExploreViewState extends State<ExploreView> {
   }
 
   Widget playListItem(BuildContext context, int index) {
-    PlayList data = logic.playList[index];
+    PlayList data = state.playList[index];
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -330,7 +337,7 @@ class _ExploreViewState extends State<ExploreView> {
   }
 
   Widget radioListItem(BuildContext context, int index) {
-    RadioList data = logic.radioList[index];
+    RadioList data = state.radioList[index];
     return GestureDetector(
       onTap: () {},
       child: Container(

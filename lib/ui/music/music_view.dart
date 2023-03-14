@@ -1,8 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_advanced/ui/music/widget/slide_vertify_test.dart';
 import 'package:get/get.dart';
 import 'package:hb_check_code/hb_check_code.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'music_logic.dart';
 
 ///滑块验证码
@@ -57,14 +59,14 @@ class _MusicPageState extends State<MusicPage> {
                                   child: Center(
                                     child: Container(
                                       decoration:
-                                          BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
+                                          BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(15)),
                                       width: 300,
                                       // padding: EdgeInsets.only(bottom: 20),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Container(
-                                            margin: EdgeInsets.only(top: 20, bottom: 20, left: 10, right: 10),
+                                            margin: EdgeInsets.only(top: 25, bottom: 20, left: 15, right: 15),
                                             padding: EdgeInsets.only(top: 2, bottom: 2),
                                             height: 40,
                                             child: Row(
@@ -75,20 +77,25 @@ class _MusicPageState extends State<MusicPage> {
                                                   textInputAction: TextInputAction.search,
                                                   controller: searchController,
                                                   autofocus: false,
+                                                  inputFormatters: [
+                                                    LengthLimitingTextInputFormatter(6), //限制长度
+                                                    FilteringTextInputFormatter.allow(RegExp("[0-9]")), //数字包括小数
+                                                  ],
                                                   decoration: InputDecoration(
-                                                      hintStyle: TextStyle(fontSize: 13),
-                                                      border: OutlineInputBorder(
-                                                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                                                          borderSide: BorderSide.none),
-                                                      filled: true,
-                                                      fillColor: Color(0xFFe6f4fd),
-                                                      hintText: "请输入验证码",
-                                                      // isCollapsed: true,
-                                                      contentPadding: EdgeInsets.only(top: 0, bottom: 0),
-                                                      prefixIcon: Icon(
-                                                        Icons.search,
-                                                        size: 20,
-                                                      )),
+                                                    hintStyle: TextStyle(fontSize: 13),
+                                                    border: OutlineInputBorder(
+                                                        borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                        borderSide: BorderSide.none),
+                                                    filled: true,
+                                                    fillColor: Color(0xFFe6f4fd),
+                                                    hintText: "请输入验证码",
+                                                    // isCollapsed: true,
+                                                    contentPadding: EdgeInsets.only(top: 0, bottom: 0, left: 15),
+                                                    // prefixIcon: Icon(
+                                                    //   Icons.search,
+                                                    //   size: 20,
+                                                    // )
+                                                  ),
                                                   onSubmitted: (value) {
                                                     state(() {
                                                       if (searchController.text == code) {
@@ -104,34 +111,9 @@ class _MusicPageState extends State<MusicPage> {
                                                     });
                                                   },
                                                 )),
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    state(() {
-                                                      if (searchController.text == code) {
-                                                        hint = "验证码识别成功";
-                                                        showPic = true;
-                                                      } else {
-                                                        hint = "验证码错误";
-                                                        code = "";
-                                                        for (var i = 0; i < 6; i++) {
-                                                          code += Random().nextInt(9).toString();
-                                                        }
-                                                      }
-                                                    });
-                                                  },
-                                                  child: Image.asset(
-                                                    "assets/images/icon_search.png",
-                                                    width: 30,
-                                                    height: 30,
-                                                  ),
-                                                )
                                               ],
                                             ),
                                           ),
-                                          SizedBox(height: 20),
                                           Offstage(
                                               offstage: showPic,
                                               child: GestureDetector(
@@ -145,20 +127,36 @@ class _MusicPageState extends State<MusicPage> {
                                                 },
                                                 child: Container(
                                                     color: Color(0xfff5f5f5),
+                                                    margin: EdgeInsets.only(left: 15, right: 15, bottom: 10),
                                                     alignment: Alignment.center,
                                                     child: HBCheckCode(
                                                       code: code,
                                                     )),
                                               )),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
                                           Text(
                                             hint,
                                             style: TextStyle(color: Colors.red),
                                           ),
-                                          SizedBox(
-                                            height: 30,
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 10),
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                state(() {
+                                                  if (searchController.text == code) {
+                                                    showPic = true;
+                                                    Fluttertoast.showToast(msg: "验证成功");
+                                                    Get.back();
+                                                  } else {
+                                                    hint = "验证码错误";
+                                                    code = "";
+                                                    for (var i = 0; i < 6; i++) {
+                                                      code += Random().nextInt(9).toString();
+                                                    }
+                                                  }
+                                                });
+                                              },
+                                              child: Text("确认"),
+                                            ),
                                           )
                                         ],
                                       ),

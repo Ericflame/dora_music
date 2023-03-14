@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../../../../bean/singer_hot_album.dart';
-import '../../../../../common/E3Classical.dart';
+import '../../../../../../bean/singer_hot_album.dart';
+import '../../../../../../common/E3Classical.dart';
 import '../singers_detail_logic.dart';
 import 'package:flustars/flustars.dart';
 

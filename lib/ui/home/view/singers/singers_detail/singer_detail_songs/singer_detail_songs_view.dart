@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-
-import '../../../../../bean/hot_song.dart';
-import '../../../../../common/E3Classical.dart';
+import '../../../../../../bean/hot_song.dart';
+import '../../../../../../common/E3Classical.dart';
 import '../singers_detail_logic.dart';
 
 class Singer_detail_songsPage extends StatelessWidget {

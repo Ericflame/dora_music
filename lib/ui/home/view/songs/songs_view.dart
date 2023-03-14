@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../bean/mv_top.dart';
-import '../../../bean/play_list.dart';
-import '../../../bean/radio_list.dart';
-import '../home_logic.dart';
+import '../singers/singers_logic.dart';
 
 class SongsView extends StatefulWidget {
   @override
@@ -13,7 +10,7 @@ class SongsView extends StatefulWidget {
 }
 
 class _SongsViewState extends State<SongsView> {
-  final logic = Get.put(HomeLogic());
+  final logic = Get.put(SingersLogic());
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -65,8 +62,7 @@ class _SongsViewState extends State<SongsView> {
       ],
     ));
   }
-
-                                                                                                                                                                                                                    // Widget SongListItem(BuildContext context, int index) {
+  // SongListItem(){
   //   MvTop data = logic.topMvList[index];
   //   return GestureDetector(
   //     onTap: () {},
@@ -151,4 +147,6 @@ class _SongsViewState extends State<SongsView> {
   //     ),
   //   );
   // }
+                                                                                                                                                                                                                    // Widget SongListItem(BuildContext context, int index) {
+
 }

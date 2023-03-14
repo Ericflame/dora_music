@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced/common/E3Classical.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-import '../../../../../bean/mvs.dart';
+import '../../../../../../bean/mvs.dart';
 import '../singers_detail_logic.dart';
 
 class Singer_detail_videoPage extends StatelessWidget {
