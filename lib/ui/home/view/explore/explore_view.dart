@@ -30,6 +30,7 @@ class _ExploreViewState extends State<ExploreView> {
         child: Obx(() {
           return Column(
             children: [
+              if(state.topMvList.length>0)
               Container(
                 margin: EdgeInsets.only(top: 10, bottom: 5, left: 10, right: 10),
                 padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
@@ -58,11 +59,8 @@ class _ExploreViewState extends State<ExploreView> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
                     Divider(
-                      height: 1,
+                      height: 5,
                     ),
                     ListView.builder(
                         physics: new NeverScrollableScrollPhysics(),
@@ -73,6 +71,7 @@ class _ExploreViewState extends State<ExploreView> {
                   ],
                 ),
               ),
+              if(state.playList.length>0)
               Container(
                 margin: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
                 padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
@@ -101,11 +100,8 @@ class _ExploreViewState extends State<ExploreView> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
                     Divider(
-                      height: 1,
+                      height: 5,
                     ),
                     ListView.builder(
                         physics: new NeverScrollableScrollPhysics(),
@@ -116,6 +112,7 @@ class _ExploreViewState extends State<ExploreView> {
                   ],
                 ),
               ),
+              if(state.radioList.length>0)
               Container(
                 margin: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
                 padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
@@ -144,11 +141,8 @@ class _ExploreViewState extends State<ExploreView> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
                     Divider(
-                      height: 1,
+                      height: 5,
                     ),
                     ListView.builder(
                         physics: new NeverScrollableScrollPhysics(),

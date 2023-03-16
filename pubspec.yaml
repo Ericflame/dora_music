@@ -47,7 +47,7 @@ dependencies:
   #http缓存
 #  dio_http_cache: 0.3.0
   hb_check_code: ^0.0.1
-  flutter_easyloading: ^3.0.5
+  flutter_easyloading: ^3.0.0
   permission_handler: 8.3.0
   draggable_widget: ^2.0.0
   flutter_picker:

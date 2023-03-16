@@ -1,5 +1,4 @@
 import 'package:flutter_advanced/http/service.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'explore_state.dart';
@@ -22,26 +21,36 @@ class ExploreLogic extends GetxController with GetSingleTickerProviderStateMixin
     getRadioList();
   }
 
-  //  获取Mv排名
+  ///  获取Mv排名
   getMvTop() {
-    Service.getSongs(3).then((value) {
+    Map<String,dynamic> param = {
+      'limit': 3
+    };
+    EasyLoading.show();
+    Service.getSongs(param).then((value) {
       state.topMvList.value = value;
-      // print(value[0].cover.toString());
+      EasyLoading.dismiss();
     });
   }
 
-  //  获取精品歌单
+  ///  获取精品歌单
   getPlayList() {
-    Service.getPlayList(3).then((value) {
+    Map<String,dynamic> param = {
+      'limit': 3
+    };
+    EasyLoading.show();
+    Service.getPlayList(param).then((value) {
       state.playList.value = value;
-      // print(value[0].name.toString());
+      EasyLoading.dismiss();
     });
   }
 
-  //  获取电台
+  ///  获取电台
   getRadioList() {
+    EasyLoading.show();
     Service.getRadioList().then((value) {
       state.radioList.value = value;
+      EasyLoading.dismiss();
     });
   }
 }

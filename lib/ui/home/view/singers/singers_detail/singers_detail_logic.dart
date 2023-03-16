@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/bean/mvs.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
@@ -9,9 +10,7 @@ import '../../../../../bean/singer_hot_album.dart';
 import '../../../../../bean/singers_details.dart';
 import '../../../../../http/service.dart';
 
-
-
-class Singers_detailLogic extends GetxController with SingleGetTickerProviderMixin{
+class Singers_detailLogic extends GetxController with SingleGetTickerProviderMixin {
   var artistId = 0.obs;
   Rx<SingersDetails> singersDetails = new SingersDetails().obs;
   RxList<SingerDetails> singerDetailsList = <SingerDetails>[].obs;
@@ -35,50 +34,63 @@ class Singers_detailLogic extends GetxController with SingleGetTickerProviderMix
     super.onInit();
     controller = TabController(length: tabs.length, vsync: this);
   }
+
   @override
   void onReady() {
     // TODO: implement onReady
     super.onReady();
     artistId.value = Get.arguments["artistId"];
-    getSingersDetails(artistId.value);
-    getSingerDetails(artistId.value);
-    getSingerAlbum(artistId.value,limit.value);
-    getSingerMv(artistId.value);
+    getSingerHotSongs();
+    getSingerDetails();
+    getSingerAlbum();
+    getSingerMv();
   }
+
   //  获取歌手详细信息
-  getSingersDetails(int id) {
-    Service.getSingersDetails(id).then((value) {
+  getSingerHotSongs() {
+    Map<String, dynamic> param = {'id': artistId.value};
+    EasyLoading.show();
+    Service.getSingersDetails(param).then((value) {
       if (value != null) {
         singersDetails.value = SingersDetails.fromJson(value.artist);
-        singerHotSongs.value = value.hotSongs;
+        singerHotSongs.value = value.hotSongs!;
+        EasyLoading.dismiss();
       }
     });
   }
 
-  getSingerDetails(int id){
-    Service.getSingerDetails(id).then((value) {
+  getSingerDetails() {
+    Map<String, dynamic> param = {'id': artistId.value};
+    EasyLoading.show();
+    Service.getSingerDetails(param).then((value) {
       if (value != null) {
         singerDetailsList.value = value;
+        EasyLoading.dismiss();
       }
     });
   }
 
   //  获取歌手专辑
-  getSingerAlbum(int id,int limit){
-    Service.getSingerAlbum(id,limit).then((value) {
+  getSingerAlbum() {
+    Map<String, dynamic> param = {'id': artistId.value, "limit": limit.value};
+    EasyLoading.show();
+    Service.getSingerAlbum(param).then((value) {
       if (value != null) {
         singerAlbums.value = value;
+        EasyLoading.dismiss();
       }
     });
   }
 
   //  获取歌手Mv
-  getSingerMv(int id){
-    Service.getSingerMv(id).then((value) {
+  getSingerMv() {
+    Map<String, dynamic> param = {'id': artistId.value};
+    EasyLoading.show();
+    Service.getSingerMv(param).then((value) {
       if (value != null) {
         singerMvs.value = value;
+        EasyLoading.dismiss();
       }
     });
   }
-
 }

@@ -72,11 +72,11 @@ class _SingersViewState extends State<SingersView> {
                       itemCount: state.singersList.length,
                       itemBuilder: SingersItem),
                   onRefresh: () async {
-                    logic.getSingersList(state.limit.value, state.singerTypes[state.selectName.value]!, -1);
+                    logic.getSingersList();
                   },
                   onLoad: () async {
                     state.limit.value += 10;
-                    logic.getSingersList(state.limit.value, state.singerTypes[state.selectName.value]!, -1);
+                    logic.getSingersList();
                   },
                 ),
               ))
@@ -91,7 +91,7 @@ class _SingersViewState extends State<SingersView> {
         onTap: () {
           state.selectIndex.value = index;
           state.selectName.value = text;
-          logic.getSingersList(state.limit.value, state.singerTypes[text]!, -1);
+          logic.getSingersList();
         },
         child: Container(
           width: 45,

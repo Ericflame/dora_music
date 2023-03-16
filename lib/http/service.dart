@@ -1,5 +1,6 @@
 import 'package:flutter_advanced/constant.dart';
 import 'package:flutter_advanced/http/httpRequest.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../bean/common_response.dart';
 import '../bean/mv_top.dart';
@@ -20,92 +21,126 @@ import '../bean/singers_mvs_response.dart';
 
 class Service {
   /// mv 排行
-  static Future getSongs(int param) async {
+  static Future<List<MvTop>> getSongs(Map<String, dynamic> param) async {
     final response = await HttpRequest.getInstance().futureGet(
       API.getMvTop,
-      queryParameters: {'limit': param},
+      queryParameters: param,
     );
-    CommonResponse result = CommonResponse.fromJson(response, (json) => json);
-    List<MvTop> data =
-    (result.data as List<dynamic>).map((e) => MvTop.fromJson(e as Map<String, dynamic>)).toList();
-    return data;
+    if (response != null) {
+      CommonResponse result = CommonResponse.fromJson(response, (json) => json);
+      return (result.data as List<dynamic>).map((e) => MvTop.fromJson(e as Map<String, dynamic>)).toList();
+    } else {
+      EasyLoading.dismiss();
+      return [];
+    }
   }
+
   /// 获取精品歌单
-  static Future getPlayList(int param) async {
+  static Future<List<PlayList>> getPlayList(Map<String, dynamic> param) async {
     final response = await HttpRequest.getInstance().futureGet(
       API.getPlayList,
-      queryParameters: {'limit': param},
+      queryParameters: param,
     );
-    PlayListResponse result = PlayListResponse.fromJson(response, (json) => json);
-    List<PlayList> data =
-    (result.playlists as List<dynamic>).map((e) => PlayList.fromJson(e as Map<String, dynamic>)).toList();
-    return data;
+    if (response != null) {
+      PlayListResponse result = PlayListResponse.fromJson(response, (json) => json);
+      return (result.playlists as List<dynamic>).map((e) => PlayList.fromJson(e as Map<String, dynamic>)).toList();
+    } else {
+      EasyLoading.dismiss();
+      return [];
+    }
   }
+
   /// 获取电台列表
-  static Future getRadioList() async {
+  static Future<List<RadioList>> getRadioList() async {
     final response = await HttpRequest.getInstance().futureGet(
       API.getRadioList,
       queryParameters: {},
     );
-    RadioListResponse result = RadioListResponse.fromJson(response, (json) => json);
-    List<RadioList> data =
-    (result.result as List<dynamic>).map((e) => RadioList.fromJson(e as Map<String, dynamic>)).toList();
-    return data;
+    if (response != null) {
+      RadioListResponse result = RadioListResponse.fromJson(response, (json) => json);
+      return (result.result as List<dynamic>).map((e) => RadioList.fromJson(e as Map<String, dynamic>)).toList();
+    } else {
+      EasyLoading.dismiss();
+      return [];
+    }
   }
+
   /// 获取歌手列表
-  static Future getSingersList(int limit,int type,int area) async {
+  static Future<List<SingersList>> getSingersList(Map<String, dynamic> param) async {
     final response = await HttpRequest.getInstance().futureGet(
       API.getSingersList,
-      queryParameters: {'limit': limit,'type': type,'area': area},
+      queryParameters: param,
     );
-    SingersListResponse result = SingersListResponse.fromJson(response, (json) => json);
-    List<SingersList> data =
-    (result.artists as List<dynamic>).map((e) => SingersList.fromJson(e as Map<String, dynamic>)).toList();
-    return data;
+    if (response != null) {
+      SingersListResponse result = SingersListResponse.fromJson(response, (json) => json);
+      return (result.artists as List<dynamic>).map((e) => SingersList.fromJson(e as Map<String, dynamic>)).toList();
+    } else {
+      EasyLoading.dismiss();
+      return [];
+    }
   }
+
   /// 获取歌手详情
-  static Future getSingersDetails(int id) async {
+  static Future<SingersDetailResponse> getSingersDetails(Map<String, dynamic> param) async {
     final response = await HttpRequest.getInstance().futureGet(
       API.getSingersDetails,
-      queryParameters: {'id': id},
+      queryParameters: param,
     );
-    SingersDetailResponse result = SingersDetailResponse.fromJson(response, (json) => json);
-    return result;
+    if (response != null) {
+      SingersDetailResponse result = SingersDetailResponse.fromJson(response, (json) => json);
+      return result;
+    } else {
+      EasyLoading.dismiss();
+      return SingersDetailResponse();
+    }
   }
 
   /// 获取歌手详细详情
-  static Future getSingerDetails(int id) async {
+  static Future<List<SingerDetails>> getSingerDetails(Map<String, dynamic> param) async {
     final response = await HttpRequest.getInstance().futureGet(
       API.getSingerDetails,
-      queryParameters: {'id': id},
+      queryParameters: param,
     );
-    SingerDetailResponse result = SingerDetailResponse.fromJson(response, (json) => json);
-    List<SingerDetails> data =
-    (result.introduction as List<dynamic>).map((e) => SingerDetails.fromJson(e as Map<String, dynamic>)).toList();
-    return data;
+    if (response != null) {
+      SingerDetailResponse result = SingerDetailResponse.fromJson(response, (json) => json);
+      return (result.introduction as List<dynamic>)
+          .map((e) => SingerDetails.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } else {
+      EasyLoading.dismiss();
+      return [];
+    }
   }
 
   ///  获取歌手专辑
-  static Future getSingerAlbum(int id,int limit) async {
+  static Future<List<SingerHotAlbum>> getSingerAlbum(Map<String, dynamic> param) async {
     final response = await HttpRequest.getInstance().futureGet(
       API.getSingerAlbum,
-      queryParameters: {'id': id,"limit":limit},
+      queryParameters: param,
     );
-    SingerAlbumResponse result = SingerAlbumResponse.fromJson(response, (json) => json);
-    List<SingerHotAlbum> data =
-    (result.hotAlbums as List<dynamic>).map((e) => SingerHotAlbum.fromJson(e as Map<String, dynamic>)).toList();
-    return data;
+    if (response != null) {
+      SingerAlbumResponse result = SingerAlbumResponse.fromJson(response, (json) => json);
+      return (result.hotAlbums as List<dynamic>)
+          .map((e) => SingerHotAlbum.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } else {
+      EasyLoading.dismiss();
+      return [];
+    }
   }
 
   ///  获取歌手Mv
-  static Future getSingerMv(int id) async {
+  static Future<List<Mvs>> getSingerMv(Map<String, dynamic> param) async {
     final response = await HttpRequest.getInstance().futureGet(
       API.getSingerMv,
-      queryParameters: {'id': id},
+      queryParameters: param,
     );
-    SingersMvResponse result = SingersMvResponse.fromJson(response, (json) => json);
-    List<Mvs> data =
-    (result.mvs as List<dynamic>).map((e) => Mvs.fromJson(e as Map<String, dynamic>)).toList();
-    return data;
+    if (response != null) {
+      SingersMvResponse result = SingersMvResponse.fromJson(response, (json) => json);
+      return (result.mvs as List<dynamic>).map((e) => Mvs.fromJson(e as Map<String, dynamic>)).toList();
+    }else{
+      EasyLoading.dismiss();
+      return [];
+    }
   }
 }

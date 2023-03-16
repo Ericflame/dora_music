@@ -27,11 +27,11 @@ class Singer_detail_albumPage extends StatelessWidget {
               itemBuilder: SingerAlbumItem),
           onRefresh: () async {
             logic.limit.value = 10;
-            logic.getSingerAlbum(logic.artistId.value, logic.limit.value);
+            logic.getSingerAlbum();
           },
           onLoad: () async {
             logic.limit.value += 10;
-            logic.getSingerAlbum(logic.artistId.value, logic.limit.value);
+            logic.getSingerAlbum();
           },
         );
       }),

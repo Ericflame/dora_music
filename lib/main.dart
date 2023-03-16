@@ -21,6 +21,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final easyLoad = EasyLoading.init();
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      title: "豆豆音乐",
       supportedLocales: [
         Locale('en', 'US'),
         Locale('zh', 'CN'),
@@ -51,6 +53,14 @@ class MyApp extends StatelessWidget {
               centerTitle: true,
               elevation: 0,
               titleTextStyle: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.normal))),
+      builder: (context, child) {
+        child = easyLoad(context, child);
+        return MediaQuery(
+          //设置文字大小不随系统设置改变
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+          child: child,
+        );
+      },
     );
   }
 }
@@ -67,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // TODO: implement initState
     super.initState();
     _initAMap();
+    _initHttpRequest();
     // 延迟进入主页
     // Future.delayed(Duration(seconds: 3), () async {
     //   Get.off(() => BottomNavigationWidget());
@@ -82,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   //初始化网络请求
-  _initHttpRequest()async{
+  _initHttpRequest() async{
     HttpRequest.initConfig(
       connectTimeout: 6 * 60 * 1000,
       receiveTimeout: 6 * 60 * 1000,

@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage> {
           // Text("云村"),
           Text("视频"),
           Text("我的"),
-
         ],
       ),
     ),);

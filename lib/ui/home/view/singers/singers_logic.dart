@@ -5,6 +5,7 @@
 
 import 'package:flutter_advanced/http/service.dart';
 import 'package:flutter_advanced/ui/home/view/singers/singers_state.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
@@ -20,13 +21,18 @@ class SingersLogic extends GetxController with GetSingleTickerProviderStateMixin
   void onReady() {
     // TODO: implement onReady
     super.onReady();
-    getSingersList(state.limit.value,-1,-1);
+    getSingersList();
   }
 
   //  获取歌手
-  getSingersList(int limit, int type, int area) {
-    Service.getSingersList(limit, type, area).then((value) {
+  getSingersList() {
+    EasyLoading.show();
+    Map<String,dynamic> param = {
+      'limit': state.limit.value, 'type': state.singerTypes[state.selectName], 'area': -1
+    };
+    Service.getSingersList(param).then((value) {
       state.singersList.value = value;
+      EasyLoading.dismiss();
     });
   }
 }
