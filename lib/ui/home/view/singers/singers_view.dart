@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import '../../../../bean/singers_list.dart';
 import '../../../../common/E3Classical.dart';
 
+///歌手
 class SingersView extends StatefulWidget {
   @override
   _SingersViewState createState() => _SingersViewState();

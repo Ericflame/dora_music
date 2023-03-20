@@ -2,12 +2,16 @@
 class Assets {
   Assets._();
 
+  static const String assetsModels049Ken = 'assets/models/049_Ken.obj';
+  static const String assetsModelsRock3LP = 'assets/models/Rock_3_LP.obj';
   static const String images1 = 'assets/images/1.pdf';
   static const String imagesBasketball = 'assets/images/basketball.png';
   static const String imagesBg = 'assets/images/bg.jpg';
+  static const String imagesIcSearch = 'assets/images/ic_search.png';
   static const String imagesIconAdd = 'assets/images/icon_add.png';
   static const String imagesIconAdd1 = 'assets/images/icon_add1.png';
   static const String imagesIconBack = 'assets/images/icon_back.png';
+  static const String imagesIconCloud = 'assets/images/icon_cloud.png';
   static const String imagesIconDebugging = 'assets/images/icon_debugging.png';
   static const String imagesIconHome = 'assets/images/icon_home.png';
   static const String imagesIconHome1 = 'assets/images/icon_home1.png';
@@ -25,6 +29,7 @@ class Assets {
   static const String imagesIconRight = 'assets/images/icon_right.png';
   static const String imagesIconSafe = 'assets/images/icon_safe.png';
   static const String imagesIconSearch = 'assets/images/icon_search.png';
+  static const String imagesIconSearchBg = 'assets/images/icon_search_bg.png';
   static const String imagesIconSinger = 'assets/images/icon_singer.png';
   static const String imagesIconStart = 'assets/images/icon_start.png';
   static const String imagesIconUser = 'assets/images/icon_user.png';
@@ -33,6 +38,23 @@ class Assets {
   static const String imagesIconVideoStart = 'assets/images/icon_video_start.png';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesSearch = 'assets/images/search.png';
+  static const String imagesSearchBg = 'assets/images/search_bg.png';
   static const String imagesSplashBg = 'assets/images/splash_bg.png';
+  static const String models049Ken = 'assets/models/049_Ken.c4d';
+  static const String models049MKen2K01 = 'assets/models/049_M_Ken_2K_01.jpg';
+  static const String models049MKen2KN = 'assets/models/049_M_Ken_2K_n.jpg';
+  static const String models049MKen8K01 = 'assets/models/049_M_Ken_8K_01.jpg';
+  static const String modelsRock3AO = 'assets/models/Rock_3_AO.jpg';
+  static const String modelsRock3BaseColor = 'assets/models/Rock_3_BaseColor.jpg';
+  static const String modelsRock3Diffuse = 'assets/models/Rock_3_Diffuse.jpg';
+  static const String modelsRock3Emissive = 'assets/models/Rock_3_Emissive.jpg';
+  static const String modelsRock3Fresnel = 'assets/models/Rock_3_Fresnel.jpg';
+  static const String modelsRock3Glossiness = 'assets/models/Rock_3_Glossiness.jpg';
+  static const String modelsRock3Height = 'assets/models/Rock_3_Height.jpg';
+  static const String modelsRock3LP = 'assets/models/Rock_3_LP.fbx';
+  static const String modelsRock3Metalness = 'assets/models/Rock_3_Metalness.jpg';
+  static const String modelsRock3Normal = 'assets/models/Rock_3_Normal.jpg';
+  static const String modelsRock3Reflection = 'assets/models/Rock_3_Reflection.jpg';
+  static const String modelsRock3Roughness = 'assets/models/Rock_3_Roughness.jpg';
 
 }

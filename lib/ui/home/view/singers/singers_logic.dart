@@ -9,7 +9,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-class SingersLogic extends GetxController with GetSingleTickerProviderStateMixin {
+class SingersLogic extends GetxController{
   SingersState state = SingersState();
   @override
   void onInit() {

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'explore_state.dart';
 
-class ExploreLogic extends GetxController with GetSingleTickerProviderStateMixin {
+class ExploreLogic extends GetxController{
   ExploreState state = ExploreState();
 
   @override

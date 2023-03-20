@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../singers/singers_logic.dart';
 
+///歌曲
 class SongsView extends StatefulWidget {
   @override
   _SongsViewState createState() => _SongsViewState();
