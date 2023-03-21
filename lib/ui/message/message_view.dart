@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class VideoPage extends StatefulWidget {
+class MessagePage extends StatefulWidget {
   @override
-  _VideoPageState createState() => _VideoPageState();
+  _MessagePageState createState() => _MessagePageState();
 }
 
-class _VideoPageState extends State<VideoPage> {
+class _MessagePageState extends State<MessagePage> {
   static const platform = MethodChannel('samples');//通道名称初始化
   String _batteryLevel = 'Unknown battery level.';
 

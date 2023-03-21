@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class VideoLogic extends GetxController {
+class MessageLogic extends GetxController {
 
   @override
   void onReady() {

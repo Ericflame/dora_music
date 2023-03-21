@@ -6,10 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_advanced/generated/assets.dart';
 import 'package:flutter_advanced/ui/music/music_view.dart';
 import 'package:flutter_advanced/ui/profile/profile_view.dart';
-import 'package:flutter_advanced/ui/video/video_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'add_media/add_media_view.dart';
 import 'home/home_view.dart';
+import 'message/message_view.dart';
 import 'music/music_view.dart';
 
 bool showFileUploadingOverlay = false;
@@ -37,7 +37,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> with Wi
       ..add(HomePage())
       ..add(MusicPage())
       ..add(Add_mediaPage())
-      ..add(VideoPage())
+      ..add(MessagePage())
       ..add(ProfilePage());
   }
 
