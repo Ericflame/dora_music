@@ -11,8 +11,10 @@ class Assets {
   static const String imagesIconAdd = 'assets/images/icon_add.png';
   static const String imagesIconAdd1 = 'assets/images/icon_add1.png';
   static const String imagesIconBack = 'assets/images/icon_back.png';
+  static const String imagesIconBigger = 'assets/images/icon_bigger.png';
   static const String imagesIconCloud = 'assets/images/icon_cloud.png';
   static const String imagesIconDebugging = 'assets/images/icon_debugging.png';
+  static const String imagesIconEraser = 'assets/images/icon_eraser.png';
   static const String imagesIconHome = 'assets/images/icon_home.png';
   static const String imagesIconHome1 = 'assets/images/icon_home1.png';
   static const String imagesIconHot = 'assets/images/icon_hot.png';

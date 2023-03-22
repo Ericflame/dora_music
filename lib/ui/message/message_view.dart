@@ -34,20 +34,6 @@ class _MessagePageState extends State<MessagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: new IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            )),
-        // centerTitle: true,
-        elevation: 0.5,
-        toolbarHeight: 45,
-        title: Text("test", style: TextStyle(fontSize: 14)),
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

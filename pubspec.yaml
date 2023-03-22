@@ -51,6 +51,8 @@ dependencies:
   permission_handler: 8.3.0
   draggable_widget: ^2.0.0
   flutter_cube: ^0.1.1
+  signature: ^5.3.2
+  appbar_animated: ^0.0.3
   flutter_picker:
     git: http://github.com/yangyxd/flutter_picker.git
 

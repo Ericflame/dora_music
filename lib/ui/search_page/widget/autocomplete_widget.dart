@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced/generated/assets.dart';
 import 'package:get/get.dart';
 import 'common_custom.dart';
 
 class BuildAutoComplete extends StatefulWidget {
-  Function ? clearText;
-  Function ? getData;
-  Function ? onSelected;
-  String ? hintText;
-  Color ? color;
-  int ? maxLength;
-  BuildAutoComplete({this.clearText,this.getData,this.onSelected,this.color,this.hintText,this.maxLength});
+  Function? clearText;
+  Function? getData;
+  Function? onSelected;
+  String? hintText;
+  Color? color;
+  int? maxLength;
+  BuildAutoComplete({this.clearText, this.getData, this.onSelected, this.color, this.hintText, this.maxLength});
 
   @override
   State<BuildAutoComplete> createState() => _BuildAutoCompleteState();
@@ -47,29 +48,28 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
     inputController = textEditingController;
     _focusNode = focusNode;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 10),
       constraints: BoxConstraints(
         maxHeight: 36,
         minHeight: 36,
       ),
       decoration: BoxDecoration(
-        color: widget.color??Colors.white,
+        color: widget.color ?? Colors.white,
         borderRadius: BorderRadius.circular(18),
       ),
       child: TextFormField(
-        style: TextStyle(fontSize: 13),
-        maxLength: widget.maxLength??20,
+        style: TextStyle(fontSize: 15, color: Colors.black54),
+        maxLength: widget.maxLength ?? 20,
         focusNode: focusNode,
         keyboardType: TextInputType.text,
         controller: inputController,
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
           hintStyle: TextStyle(fontSize: 13),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)), borderSide: BorderSide.none),
+          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)), borderSide: BorderSide.none),
           filled: true,
           fillColor: Colors.white,
-          hintText: widget.hintText??"请输入关键字",
+          hintText: widget.hintText ?? "请输入关键字",
           // isCollapsed: true,
           contentPadding: EdgeInsets.only(top: 0, bottom: 0),
           prefixIcon: Icon(
@@ -81,7 +81,6 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
               onTap: () {
                 setState(() {
                   widget.clearText!();
-                  // logic.customerId.value = "";
                   inputController.text = "";
                 });
               },
@@ -119,19 +118,19 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
     return Align(
       alignment: Alignment.topCenter,
       child: Padding(
-        padding: const EdgeInsets.only(top: 0, left: 20, right: 20),
+        padding: const EdgeInsets.only(top: 0, left: 10, right: 10),
         child: Material(
           child: Container(
             decoration: BoxDecoration(
               //设置四周圆角 角度
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              borderRadius: BorderRadius.all(Radius.circular(30.0)),
               //设置四周边框
               border: new Border.all(width: 1, color: Colors.white),
             ),
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxHeight: 100.0),
               child: ListView.builder(
-                padding: EdgeInsets.only(left: 20, right: 20),
+                padding: EdgeInsets.only(left: 10, right: 10),
                 itemBuilder: (_, index) {
                   final CommonCustom option = options.elementAt(index);
                   return InkWell(
@@ -142,7 +141,13 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
                         children: [
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [Text.rich(formSpan(option.customerName ?? "",inputController.text))],
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(right: 5),
+                                child: Image.asset(Assets.imagesIconMusic1, width: 16, height: 16),
+                              ),
+                              Text.rich(formSpan(option.customerName ?? "", inputController.text))
+                            ],
                           ),
                           Divider(
                             height: 1,

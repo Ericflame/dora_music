@@ -1,3 +1,4 @@
+import 'package:appbar_animated/appbar_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'video_logic.dart';
@@ -14,6 +15,8 @@ class _VideoPageState extends State<VideoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Container(),
+    );
   }
 }

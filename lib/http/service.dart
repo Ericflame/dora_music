@@ -3,6 +3,9 @@ import 'package:flutter_advanced/http/httpRequest.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../bean/common_response.dart';
+import '../bean/hot_search.dart';
+import '../bean/hot_search.dart';
+import '../bean/hot_search.dart';
 import '../bean/mv_top.dart';
 import '../bean/mvs.dart';
 import '../bean/play_list.dart';
@@ -138,6 +141,20 @@ class Service {
     if (response != null) {
       SingersMvResponse result = SingersMvResponse.fromJson(response, (json) => json);
       return (result.mvs as List<dynamic>).map((e) => Mvs.fromJson(e as Map<String, dynamic>)).toList();
+    }else{
+      EasyLoading.dismiss();
+      return [];
+    }
+  }
+  ///  热门搜索
+  static Future<List<HotSearch>> getHotSearch(Map<String, dynamic> param) async {
+    final response = await HttpRequest.getInstance().futureGet(
+      API.getHotSearch,
+      queryParameters: param,
+    );
+    if (response != null) {
+      CommonResponse result = CommonResponse.fromJson(response, (json) => json);
+      return (result.data as List<dynamic>).map((e) => HotSearch.fromJson(e as Map<String, dynamic>)).toList();
     }else{
       EasyLoading.dismiss();
       return [];
