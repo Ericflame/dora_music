@@ -17,6 +17,20 @@ class SearchPageLogic extends GetxController {
       }
     });
   }
+  //  获取搜索推荐
+  getSearchSuggest(String e) {
+    Map<String, dynamic> param = {
+      "type":"mobile",
+      "keywords":e
+    };
+    // EasyLoading.show();
+    Service.getSearchSuggest(param).then((value) {
+      if (value != null) {
+        state.searchSuggestList.value = value;
+        // EasyLoading.dismiss();
+      }
+    });
+  }
   @override
   void onReady() {
     // TODO: implement onReady

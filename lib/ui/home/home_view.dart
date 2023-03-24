@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../../generated/assets.dart';
 import '../message/message_view.dart';
 import '../search_page/search_page_view.dart';
-import '../search_page/search_page_view2.dart';
+import '../search_page/widget/search_page_view2.dart';
 import 'view/songs/songs_view.dart';
 import 'home_logic.dart';
 import 'home_state.dart';

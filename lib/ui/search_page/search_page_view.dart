@@ -31,7 +31,7 @@ class _SearchPageState extends State<SearchPage> {
       body: Obx(() {
         return ScaffoldLayoutBuilder(
           backgroundColorAppBar: const ColorBuilder(Colors.transparent, Color(0xff9ad2fd)),
-          textColorAppBar: const ColorBuilder(Color(0xff4caee3),Colors.white),
+          textColorAppBar: const ColorBuilder(Color(0xff4caee3), Colors.white),
           appBarBuilder: _appBar,
           child: SingleChildScrollView(
               child: Column(
@@ -147,8 +147,8 @@ class _SearchPageState extends State<SearchPage> {
       child: Row(
         children: [
           Container(
-            width: 50,
-            height: 50,
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
             ),
@@ -158,8 +158,6 @@ class _SearchPageState extends State<SearchPage> {
                 },
                 child: Image.asset(
                   Assets.imagesIconBack,
-                  width: 25,
-                  height: 25,
                   color: colorAnimated.color,
                 )),
           ),
@@ -173,16 +171,13 @@ class _SearchPageState extends State<SearchPage> {
             },
             getData: (e) {
               /// 获取填充列表的回调,返回一个列表
-              return [
-                CommonCustom("1", "郑叶"),
-                CommonCustom("2", "张云川"),
-                CommonCustom("3", "陈泓璋"),
-              ];
+              logic.getSearchSuggest(e);
+              return state.searchSuggestList;
             },
           )),
           Container(
-            width: 50,
-            height: 50,
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
             ),
@@ -190,8 +185,6 @@ class _SearchPageState extends State<SearchPage> {
               onPressed: () {},
               child: Image.asset(
                 Assets.imagesIcSearch,
-                width: 25,
-                height: 25,
                 color: colorAnimated.color,
               ),
             ),

@@ -12,6 +12,8 @@ import '../bean/play_list.dart';
 import '../bean/play_list_response.dart';
 import '../bean/radio_list.dart';
 import '../bean/radio_list_response.dart';
+import '../bean/search_suggest.dart';
+import '../bean/search_suggest_list.dart';
 import '../bean/singer_album_response.dart';
 import '../bean/singer_details.dart';
 import '../bean/singer_details_response.dart';
@@ -155,6 +157,26 @@ class Service {
     if (response != null) {
       CommonResponse result = CommonResponse.fromJson(response, (json) => json);
       return (result.data as List<dynamic>).map((e) => HotSearch.fromJson(e as Map<String, dynamic>)).toList();
+    }else{
+      EasyLoading.dismiss();
+      return [];
+    }
+  }
+  ///  搜索建议
+  static Future<List<SearchSuggestList>> getSearchSuggest(Map<String, dynamic> param) async {
+    final response = await HttpRequest.getInstance().futureGet(
+      API.getSearchSuggest,
+      queryParameters: param,
+    );
+    if (response != null) {
+      RadioListResponse result = RadioListResponse.fromJson(response, (json) => json);
+      SearchSuggest allMatch = SearchSuggest.fromJson(result.result, (json) => json);
+      if(allMatch.allMatch != null){
+        return allMatch.allMatch??[];
+      }else{
+        return [];
+      }
+      // return (allMatch.allMatch as List<dynamic>).map((e) => SearchSuggestList.fromJson(e as Map<String, dynamic>)).toList();
     }else{
       EasyLoading.dismiss();
       return [];

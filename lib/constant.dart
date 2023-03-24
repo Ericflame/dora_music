@@ -14,4 +14,7 @@ class API{
   static String getSingerAlbum = Constant.baseUrl + "/artist/album";//获取歌手专辑信息
   static String getSingerMv = Constant.baseUrl + "/artist/mv";//获取歌手Mv信息
   static String getHotSearch = Constant.baseUrl + "/search/hot/detail";//获取歌手Mv信息
+  static String getSearch = Constant.baseUrl + "/search";//搜索
+  static String getSearchDefault = Constant.baseUrl + "/search/default";//默认搜索关键词
+  static String getSearchSuggest = Constant.baseUrl + "/search/suggest";//搜索建议
 }

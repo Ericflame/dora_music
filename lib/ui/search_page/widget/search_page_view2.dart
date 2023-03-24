@@ -3,9 +3,9 @@ import 'package:flutter_advanced/ui/search_page/search_page_state.dart';
 import 'package:flutter_advanced/ui/search_page/widget/autocomplete_widget.dart';
 import 'package:get/get.dart';
 
-import '../../bean/hot_search.dart';
-import '../../generated/assets.dart';
-import 'search_page_logic.dart';
+import '../../../bean/hot_search.dart';
+import '../../../generated/assets.dart';
+import '../search_page_logic.dart';
 
 class SearchPagePage extends StatefulWidget {
   @override

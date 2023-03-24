@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/generated/assets.dart';
 import 'package:get/get.dart';
+import '../../../bean/search_suggest_list.dart';
 import 'common_custom.dart';
 
 class BuildAutoComplete extends StatefulWidget {
@@ -33,12 +34,12 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
 
   ///模糊查询自动填充
   Widget buildAutoComplete() {
-    return Autocomplete<CommonCustom>(
+    return Autocomplete<SearchSuggestList>(
       optionsBuilder: buildOptions,
       onSelected: onSelected,
       optionsViewBuilder: _buildOptionsView,
       fieldViewBuilder: _buildFieldView,
-      displayStringForOption: (user) => user.customerName ?? "",
+      displayStringForOption: (user) => user.keyword ?? "",
     );
   }
 
@@ -55,7 +56,7 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
       ),
       decoration: BoxDecoration(
         color: widget.color ?? Colors.white,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: TextFormField(
         style: TextStyle(fontSize: 15, color: Colors.black54),
@@ -97,16 +98,16 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
   }
 
   ///数据列表
-  Future<Iterable<CommonCustom>> buildOptions(TextEditingValue textEditingValue) async {
+  Future<Iterable<SearchSuggestList>> buildOptions(TextEditingValue textEditingValue) async {
     if (textEditingValue.text == '') {
-      return const Iterable<CommonCustom>.empty();
+      return const Iterable<SearchSuggestList>.empty();
     }
     widget.getData!(inputController.text);
     return widget.getData!(inputController.text);
   }
 
   ///选择后的回调
-  onSelected(CommonCustom options) {
+  onSelected(SearchSuggestList options) {
     widget.onSelected!(options);
     _focusNode.unfocus(); //输入框失去焦点，收起键盘
     print('选择结束:${options}');
@@ -114,52 +115,49 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
 
   ///填充内容
   Widget _buildOptionsView(
-      BuildContext context, AutocompleteOnSelected<CommonCustom> onSelected, Iterable<CommonCustom> options) {
+      BuildContext context, AutocompleteOnSelected<SearchSuggestList> onSelected, Iterable<SearchSuggestList> options) {
     return Align(
-      alignment: Alignment.topCenter,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 0, left: 10, right: 10),
-        child: Material(
-          child: Container(
-            decoration: BoxDecoration(
-              //设置四周圆角 角度
-              borderRadius: BorderRadius.all(Radius.circular(30.0)),
-              //设置四周边框
-              border: new Border.all(width: 1, color: Colors.white),
-            ),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 100.0),
-              child: ListView.builder(
-                padding: EdgeInsets.only(left: 10, right: 10),
-                itemBuilder: (_, index) {
-                  final CommonCustom option = options.elementAt(index);
-                  return InkWell(
-                    onTap: () => onSelected.call(option),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 0),
-                      child: Column(
+      alignment: Alignment.topLeft,
+      child: Container(
+        width: 330,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          //设置四周圆角 角度
+          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+          //设置四周边框
+          border: new Border.all(width: 1, color: Colors.white),
+        ),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxHeight: 90.0),
+          child: ListView.builder(
+            padding: EdgeInsets.only(left: 10, right: 10),
+            itemBuilder: (_, index) {
+              final SearchSuggestList option = options.elementAt(index);
+              return InkWell(
+                onTap: () => onSelected.call(option),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 0),
+                  child: Column(
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(right: 5),
-                                child: Image.asset(Assets.imagesIconMusic1, width: 16, height: 16),
-                              ),
-                              Text.rich(formSpan(option.customerName ?? "", inputController.text))
-                            ],
+                          Padding(
+                            padding: EdgeInsets.only(right: 10),
+                            child: Image.asset(Assets.imagesIconMusic1, width: 15, height: 15),
                           ),
-                          Divider(
-                            height: 1,
-                          )
+                          Text.rich(formSpan(option.keyword ?? "", inputController.text),style: TextStyle(fontSize: 13,color: Colors.black87),)
                         ],
                       ),
-                    ),
-                  );
-                },
-                itemCount: options.length,
-              ),
-            ),
+                      Divider(
+                        height: 1,
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+            itemCount: options.length,
           ),
         ),
       ),
