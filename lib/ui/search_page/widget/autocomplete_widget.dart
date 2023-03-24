@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced/generated/assets.dart';
 import 'package:get/get.dart';
 import '../../../bean/search_suggest_list.dart';
-import 'common_custom.dart';
 
 class BuildAutoComplete extends StatefulWidget {
   Function? clearText;
@@ -61,7 +60,7 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
       child: TextFormField(
         style: TextStyle(fontSize: 15, color: Colors.black54),
         maxLength: widget.maxLength ?? 20,
-        focusNode: focusNode,
+        focusNode: _focusNode,
         keyboardType: TextInputType.text,
         controller: inputController,
         textInputAction: TextInputAction.search,

@@ -61,7 +61,7 @@ class _SearchPagePageState extends State<SearchPagePage> {
                               ),
                             ),
                           ),
-                          Expanded(child: BuildAutoComplete()),
+                          // Expanded(child: BuildAutoComplete()),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: TextButton(
