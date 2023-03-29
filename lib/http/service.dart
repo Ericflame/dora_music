@@ -3,6 +3,7 @@ import 'package:flutter_advanced/http/httpRequest.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../bean/common_response.dart';
+import '../bean/common_response_s.dart';
 import '../bean/hot_search.dart';
 import '../bean/hot_search.dart';
 import '../bean/hot_search.dart';
@@ -23,6 +24,7 @@ import '../bean/singers_details_response.dart';
 import '../bean/singers_list.dart';
 import '../bean/singers_list_response.dart';
 import '../bean/singers_mvs_response.dart';
+import '../bean/suggest_video.dart';
 
 class Service {
   /// mv 排行
@@ -177,6 +179,21 @@ class Service {
         return [];
       }
       // return (allMatch.allMatch as List<dynamic>).map((e) => SearchSuggestList.fromJson(e as Map<String, dynamic>)).toList();
+    }else{
+      EasyLoading.dismiss();
+      return [];
+    }
+  }
+
+  ///  获取推荐视频
+  static Future<List<SuggestVideo>> getSuggestVideo(Map<String, dynamic> param) async {
+    final response = await HttpRequest.getInstance().futureGet(
+      API.getSuggestVideo,
+      queryParameters: param,
+    );
+    if (response != null) {
+      CommonResponseS result = CommonResponseS.fromJson(response, (json) => json);
+      return (result.datas as List<dynamic>).map((e) => SuggestVideo.fromJson(e as Map<String, dynamic>)).toList();
     }else{
       EasyLoading.dismiss();
       return [];

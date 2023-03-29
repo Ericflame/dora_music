@@ -1,9 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chz.test">
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!--网络请求权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--外部文件存储权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
    <application
         android:label="flutter_advanced"
         android:name="${applicationName}"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

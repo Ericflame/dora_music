@@ -11,6 +11,7 @@ import 'add_media/add_media_view.dart';
 import 'home/home_view.dart';
 import 'message/message_view.dart';
 import 'music/music_view.dart';
+import 'music/widget/car_video_page.dart';
 
 bool showFileUploadingOverlay = false;
 
@@ -35,12 +36,11 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> with Wi
     });
     pages
       ..add(HomePage())
-      ..add(MusicPage())
+      ..add(CarVideoPage())
       ..add(Add_mediaPage())
       ..add(MessagePage())
       ..add(ProfilePage());
   }
-
   @override
   void dispose() {
     super.dispose();

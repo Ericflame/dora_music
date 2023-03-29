@@ -5,4 +5,5 @@ import 'package:flutter/cupertino.dart';
 /// Created By Hongzhang Chen On 2023-03-16
 /// Copy Right ©2023-03-16 flutter_test All Right Reserved
 class MusicState {
+
 }

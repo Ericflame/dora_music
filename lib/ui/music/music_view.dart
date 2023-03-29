@@ -1,13 +1,8 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_advanced/ui/music/widget/slide_vertify_test.dart';
 import 'package:get/get.dart';
-import 'package:hb_check_code/hb_check_code.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:video_player/video_player.dart';
 import 'music_logic.dart';
 
-///滑块验证码
 class MusicPage extends StatefulWidget {
   @override
   State<MusicPage> createState() => _MusicPageState();
@@ -15,160 +10,81 @@ class MusicPage extends StatefulWidget {
 
 class _MusicPageState extends State<MusicPage> {
   final logic = Get.put(MusicLogic());
-  TextEditingController searchController = TextEditingController();
-  bool showPic = false;
-  String hint = "";
-  String code = "";
-
+  int _pageIndex = 1;
+  PageController _pageController = PageController();
+  late VideoPlayerController _playerController;
+  bool isInitControl = false;
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   //网络链接
+  //   _playerController = VideoPlayerController.network(
+  //       "http://vodkgeyttp9.vod.126.net/vodkgeyttp8/tLd16zFG_2549010438_hd.mp4?ts=1680059188&rid=E349F3448390B1C1661C33A9E342FAFE&rl=3&rs=AWlGSFumgzUdDgtTSNuHaPmsForIocde&sign=e2107d4d2e31219cc6082bf548c4c084&ext=xpjYDTddelQVS7bDOy0pvOG8J3wj%2FZvBfQsYwoj8QhQ3JNsh9LhX3Te3XBAk3Xiw1mivXy2gerw3sPfRXKZx3w1FPHwlobzdyLDLnOCQW7scS2Y%2FLQ4YY06PiSKZyIeKvOtFT9Kc9Hl9gK2V61jdy62WfcdNwXwBU0uibbz3QjFYZc6f%2BjD10mJ%2FiKk%2F99WOwS0%2BW4ijfmtOieDSzFPXwwMTvEC2Mplo7%2FXTO%2FMuvEjhWvPHCE%2B1cXpS7kUElstkOI%2BrbswSmCm%2FF8G9GbO38UPvJ1t1J6qUs3xjsC%2F94eMylKAJs1iAp39ic7Reyj1jgUwFNszSJhsl0B8f1qjyDhGoEs7NjN9n1tBSJkHOEdaBWvczG%2BBYsDy0aAZpxBOQkbZe8yWEgwAbTUxbB38GQ0m08rTKcGgO%2Fx0A3ETrPadU9RHxP6LF4Hn4ySaj8F7ynsta%2BeDOttkX%2FtXl7IbEXzChiqStmvFGDXLlQvkFIwdTnfC1pGqlZL5TIDlrEUFDqUMuOUt2XqJsPggUzuZiEQ%3D%3D");
+  //   // VideoPlayerController.file(File(url));
+  //   //本地链接
+  //   // _videoPlayerController = VideoPlayerController.asset("asset资源路径");
+  //   _playerController.initialize()
+  //     ..whenComplete(() {
+  //       setState(() {
+  //         _playerController.play();
+  //       });
+  //     });
+  // }
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    for (var i = 0; i < 6; i++) {
-      code = code + Random().nextInt(9).toString();
-    }
+    _playerController = VideoPlayerController.network("https://vodkgeyttp9.vod.126.net/vodkgeyttp8/WaFzpZVd_128012417_hd.mp4?ts=1680064086&rid=E349F3448390B1C1661C33A9E342FAFE&rl=3&rs=MIJjrQhJRCEOZevDkzJGHyUlRwXIRQpQ&sign=469226106ae4eb23139c4c1dcc95fee8&ext=xpjYDTddelQVS7bDOy0pvOG8J3wj%2FZvBfQsYwoj8QhQ3JNsh9LhX3Te3XBAk3Xiw1mivXy2gerw3sPfRXKZx3w1FPHwlobzdyLDLnOCQW7scS2Y%2FLQ4YY06PiSKZyIeKvOtFT9Kc9Hl9gK2V61jdy62WfcdNwXwBU0uibbz3QjFYZc6f%2BjD10mJ%2FiKk%2F99WOwS0%2BW4ijfmtOieDSzFPXwwMTvEC2Mplo7%2FXTO%2FMuvEjhWvPHCE%2B1cXpS7kUElstkOI%2BrbswSmCm%2FF8G9GbO38UPvJ1t1J6qUs3xjsC%2F94eMylKAJs1iAp39ic7Reyj1jgUwFNszSJhsl0B8f1qjyDhGoEs7NjN9n1tBSJkHOEdaBWvczG%2BBYsDy0aAZpxBOQkbZe8yWEgwAbTUxbB38GQ0m08rTKcGgO%2Fx0A3ETrPacY0HTLbuyMYTYVtc4z5tDY6d6I%2F7AiMG%2FwImLQXZSK8cZDtnTpFrVQejhRiYWgWTRu6I0TyFTrvsyV486xRLBiXsLS7SpR1jrV3mLSHyLIfQ%3D%3D");
+    _playerController.initialize().onError((error, stackTrace) {
+      isInitControl = _playerController.value.isInitialized;
+      print(
+          "init error:{error.toString()}+{_controller.value.isInitialized}+");
+    });
+  }
+
+
+  Future<bool> init() async {
+    await _playerController.play().onError((error, stackTrace) {
+      print("play error:{error.toString()}+{url}+");
+    });
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      backgroundColor: Colors.black,
+      body: PageView(
+        scrollDirection: Axis.vertical,
+        onPageChanged: (index) {
+          _pageIndex = index;
+        },
+        controller: _pageController,
+        allowImplicitScrolling: false,
+        padEnds: true,
+        reverse: false,
         children: [
-          SizedBox(
-            height: 100,
+          FutureBuilder<bool>(
+              future: init(),
+              builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                if (snapshot.data == true) {
+                  isInitControl = _playerController.value.isInitialized;
+                  return AspectRatio(
+                    //设置视频的大小 宽高比。长宽比表示为宽高比。例如，16:9宽高比的值为16.0/9.0
+                    aspectRatio: _playerController.value.aspectRatio,
+                    //播放视频的组件
+                    child: VideoPlayer(_playerController, key: UniqueKey()),
+                  );
+                }else{
+                  return const Text("视频加载钟");
+                }
+              }),
+          Container(
+            color: Colors.blue,
           ),
-          Center(
-            child: SlideVerifyWidget(
-                backgroundColor: Color(0xffe8e8e8),
-                slideColor: Color(0xff7ac336),
-                borderColor: Colors.white,
-                verifySuccessListener: () {
-                  showDialog(
-                      context: context,
-                      barrierDismissible: true,
-                      useRootNavigator: true,
-                      builder: (context) {
-                        return StatefulBuilder(builder: (context, state) {
-                          return Scaffold(
-                            backgroundColor: Color(0x1E000000), //设置为透明色
-                            body: new WillPopScope(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    FocusScope.of(context).requestFocus(FocusNode());
-                                  },
-                                  child: Center(
-                                    child: Container(
-                                      decoration:
-                                          BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(15)),
-                                      width: 300,
-                                      // padding: EdgeInsets.only(bottom: 20),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Container(
-                                            margin: EdgeInsets.only(top: 25, bottom: 20, left: 15, right: 15),
-                                            padding: EdgeInsets.only(top: 2, bottom: 2),
-                                            height: 40,
-                                            child: Row(
-                                              children: [
-                                                Expanded(
-                                                    child: TextField(
-                                                  style: TextStyle(fontSize: 13),
-                                                  textInputAction: TextInputAction.search,
-                                                  controller: searchController,
-                                                  autofocus: false,
-                                                  inputFormatters: [
-                                                    LengthLimitingTextInputFormatter(6), //限制长度
-                                                    FilteringTextInputFormatter.allow(RegExp("[0-9]")), //数字包括小数
-                                                  ],
-                                                  decoration: InputDecoration(
-                                                    hintStyle: TextStyle(fontSize: 13),
-                                                    border: OutlineInputBorder(
-                                                        borderRadius: BorderRadius.all(Radius.circular(0)),
-                                                        borderSide: BorderSide.none),
-                                                    filled: true,
-                                                    fillColor: Color(0xFFe6f4fd),
-                                                    hintText: "请输入验证码",
-                                                    // isCollapsed: true,
-                                                    contentPadding: EdgeInsets.only(top: 0, bottom: 0, left: 15),
-                                                    // prefixIcon: Icon(
-                                                    //   Icons.search,
-                                                    //   size: 20,
-                                                    // )
-                                                  ),
-                                                  onSubmitted: (value) {
-                                                    state(() {
-                                                      if (searchController.text == code) {
-                                                        hint = "验证码识别成功";
-                                                        showPic = true;
-                                                      } else {
-                                                        hint = "验证码错误";
-                                                        code = "";
-                                                        for (var i = 0; i < 6; i++) {
-                                                          code += Random().nextInt(9).toString();
-                                                        }
-                                                      }
-                                                    });
-                                                  },
-                                                )),
-                                              ],
-                                            ),
-                                          ),
-                                          Offstage(
-                                              offstage: showPic,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  state(() {
-                                                    code = "";
-                                                    for (var i = 0; i < 6; i++) {
-                                                      code += Random().nextInt(9).toString();
-                                                    }
-                                                  });
-                                                },
-                                                child: Container(
-                                                    color: Color(0xfff5f5f5),
-                                                    margin: EdgeInsets.only(left: 15, right: 15, bottom: 10),
-                                                    alignment: Alignment.center,
-                                                    child: HBCheckCode(
-                                                      code: code,
-                                                    )),
-                                              )),
-                                          Text(
-                                            hint,
-                                            style: TextStyle(color: Colors.red),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 10),
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                state(() {
-                                                  if (searchController.text == code) {
-                                                    showPic = true;
-                                                    Fluttertoast.showToast(msg: "验证成功");
-                                                    Get.back();
-                                                  } else {
-                                                    hint = "验证码错误";
-                                                    code = "";
-                                                    for (var i = 0; i < 6; i++) {
-                                                      code += Random().nextInt(9).toString();
-                                                    }
-                                                  }
-                                                });
-                                              },
-                                              child: Text("确认"),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                onWillPop: () async => true),
-                          );
-                        });
-                      });
-                }),
-          ),
+          Container(
+            color: Colors.green,
+          )
         ],
       ),
     );

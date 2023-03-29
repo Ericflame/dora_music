@@ -28,6 +28,8 @@ class Assets {
   static const String imagesIconMusic = 'assets/images/icon_music.png';
   static const String imagesIconMusic1 = 'assets/images/icon_music1.png';
   static const String imagesIconMv = 'assets/images/icon_mv.png';
+  static const String imagesIconPlaying = 'assets/images/icon_playing.png';
+  static const String imagesIconPraise = 'assets/images/icon_praise.png';
   static const String imagesIconProgress = 'assets/images/icon_progress.png';
   static const String imagesIconRight = 'assets/images/icon_right.png';
   static const String imagesIconSafe = 'assets/images/icon_safe.png';
