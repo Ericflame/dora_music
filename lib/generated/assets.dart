@@ -11,6 +11,7 @@ class Assets {
   static const String imagesIconAdd = 'assets/images/icon_add.png';
   static const String imagesIconAdd1 = 'assets/images/icon_add1.png';
   static const String imagesIconBack = 'assets/images/icon_back.png';
+  static const String imagesIconBigScreen = 'assets/images/icon_big_screen.png';
   static const String imagesIconBigger = 'assets/images/icon_bigger.png';
   static const String imagesIconCloud = 'assets/images/icon_cloud.png';
   static const String imagesIconDebugging = 'assets/images/icon_debugging.png';
@@ -18,6 +19,7 @@ class Assets {
   static const String imagesIconHome = 'assets/images/icon_home.png';
   static const String imagesIconHome1 = 'assets/images/icon_home1.png';
   static const String imagesIconHot = 'assets/images/icon_hot.png';
+  static const String imagesIconLike = 'assets/images/icon_like.png';
   static const String imagesIconManage = 'assets/images/icon_manage.png';
   static const String imagesIconMessage = 'assets/images/icon_message.png';
   static const String imagesIconMessage1 = 'assets/images/icon_message1.png';
@@ -28,9 +30,11 @@ class Assets {
   static const String imagesIconMusic = 'assets/images/icon_music.png';
   static const String imagesIconMusic1 = 'assets/images/icon_music1.png';
   static const String imagesIconMv = 'assets/images/icon_mv.png';
+  static const String imagesIconPinglun = 'assets/images/icon_pinglun.png';
   static const String imagesIconPlaying = 'assets/images/icon_playing.png';
   static const String imagesIconPraise = 'assets/images/icon_praise.png';
   static const String imagesIconProgress = 'assets/images/icon_progress.png';
+  static const String imagesIconRedlike = 'assets/images/icon_redlike.png';
   static const String imagesIconRight = 'assets/images/icon_right.png';
   static const String imagesIconSafe = 'assets/images/icon_safe.png';
   static const String imagesIconSearch = 'assets/images/icon_search.png';
@@ -41,6 +45,7 @@ class Assets {
   static const String imagesIconVideo = 'assets/images/icon_video.png';
   static const String imagesIconVideo1 = 'assets/images/icon_video1.png';
   static const String imagesIconVideoStart = 'assets/images/icon_video_start.png';
+  static const String imagesIconZhuanfa = 'assets/images/icon_zhuanfa.png';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesMore = 'assets/images/more.png';
   static const String imagesSearch = 'assets/images/search.png';

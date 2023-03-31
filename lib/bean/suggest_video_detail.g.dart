@@ -11,10 +11,18 @@ SuggestVideoDetail _$SuggestVideoDetailFromJson(Map<String, dynamic> json) =>
       ..urlInfo = json['urlInfo'] == null
           ? null
           : UrlInfo.fromJson(json['urlInfo'] as Map<String, dynamic>)
-      ..title = json['title'] as String?;
+      ..title = json['title'] as String?
+      ..creator = json['creator'] == null
+          ? null
+          : Creator.fromJson(json['creator'] as Map<String, dynamic>)
+      ..videoGroup = (json['videoGroup'] as List<dynamic>?)
+          ?.map((e) => Group.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$SuggestVideoDetailToJson(SuggestVideoDetail instance) =>
     <String, dynamic>{
       'urlInfo': instance.urlInfo,
       'title': instance.title,
+      'creator': instance.creator,
+      'videoGroup': instance.videoGroup,
     };

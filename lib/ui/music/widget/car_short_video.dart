@@ -1,130 +1,131 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:event_bus/event_bus.dart';
 import '../../../generated/assets.dart';
 import 'car_video_page.dart';
 
 class CarShortVideo extends StatefulWidget {
-  final String url;//视频地址
-  final String title;//视频标题
+  final String url; //视频地址
+  final String title; //视频标题
+  final String nickName; //用户名称
+  final String group; //关键字
   final String previewImageUrl; //预览图片的地址
   final bool showProgressBar; //是否显示进度条
   final bool showProgressText; //是否显示进度文本
   final int positionTag;
 
-
-  CarShortVideo(
-      {
-        required this.url,
-        required this.title,
-        this.previewImageUrl= "",
-        this.showProgressBar= true,
-        this.showProgressText= true,
-        this.positionTag = 0,
-      });
+  CarShortVideo({
+    required this.url,
+    required this.title,
+    required this.nickName,
+    this.group = "",
+    this.previewImageUrl = "",
+    this.showProgressBar = true,
+    this.showProgressText = true,
+    this.positionTag = 0,
+  });
 
   @override
   _CarShortVideoState createState() => _CarShortVideoState();
 }
 
 class _CarShortVideoState extends State<CarShortVideo> {
-  late VideoPlayerController _controller;
-  bool _hideActionButton = true;//是否隐藏视频
-  bool videoPrepared = false; //视频是否初始化
-  double aspectRatio = 1;//比例
-  late Future _initializeVideoPlayerFuture;//是否初始化
+  var _controller = VideoPlayerController.network("").obs;
+  var _hideActionButton = true.obs; //是否隐藏播放按钮
+  var videoPrepared = false.obs; //视频是否初始化
+  var isOrientations = false.obs; //视频是否横屏
+  double aspectRatio = 1; //比例
+  late Future _initializeVideoPlayerFuture; //是否初始化
+
   @override
   void initState() {
     super.initState();
-    print("哈哈"+widget.url);
-    // _controller.play();
-    // videoPrepared = true;
-    // eventBus.on(EventVideoPlayPosition + widget.positionTag.toString(), (arg) {
-    //   setState(() {
-    //     if (arg == widget.positionTag) {
-    //       _controller.play();
-    //       videoPrepared = true;
-    //     } else {
-    //       _controller.pause();
-    //     }
-    //   });
-    // });
-
-    _controller = VideoPlayerController.network(widget.url)
+    _controller.value = VideoPlayerController.network(widget.url)
       ..setLooping(true).then((_) {
         if (widget.positionTag == 0 && CarVideoPage.firstInitTimes == 1) {
           CarVideoPage.firstInitTimes = 2;
-          _controller.play();
-          videoPrepared = true;
+          _controller.value.pause();
+          videoPrepared.value = true;
           setState(() {});
         }
       });
-    videoPrepared = true;
-    _controller.play();
-    _initializeVideoPlayerFuture = _controller.initialize();
+    videoPrepared.value = true;
+    _controller.value.pause();
+    _initializeVideoPlayerFuture = _controller.value.initialize();
   }
 
   Future<bool> init() async {
-    await _controller.play().onError((error, stackTrace) {
-      print("play error:{error.toString()}+{url}+");
-    });
+    if (_controller.value.value.isPlaying) {
+      await _controller.value.play().onError((error, stackTrace) {
+        print("play error:{error.toString()}+{url}+");
+      });
+    } else {
+      await _controller.value.pause().onError((error, stackTrace) {
+        print("play error:{error.toString()}+{url}+");
+      });
+    }
     return true;
   }
 
   @override
   Widget build(BuildContext context) {
-    aspectRatio = _controller.value.aspectRatio;
-    return Stack(
-      children: <Widget>[
-        Container(
-          color: Color(0XFF333333),
-          child: GestureDetector(
-            child: Stack(
-              children: <Widget>[
-                FutureBuilder(
-                  future: init(),
-                  builder: (context, snapshot) {
-                    print("连接状态"+snapshot.connectionState.toString());
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      return Center(
-                        child: AspectRatio(
-                          aspectRatio: _controller.value.aspectRatio,
-                          child: VideoPlayer(_controller, key: UniqueKey()),
-                        ),
-                      );
-                    } else {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  },
-                ),
-                _getPauseView(),
-              ],
+    aspectRatio = _controller.value.value.aspectRatio;
+    return Obx(() {
+      return Stack(
+        children: <Widget>[
+          Container(
+            // color: Color(0XFF333333),
+            color: Colors.black,
+            child: GestureDetector(
+              child: Stack(
+                children: <Widget>[
+                  FutureBuilder(
+                    future: init(),
+                    builder: (context, snapshot) {
+                      print("连接状态:" + snapshot.connectionState.toString());
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return Center(
+                          child: AspectRatio(
+                            aspectRatio: _controller.value.value.aspectRatio,
+                            child: VideoPlayer(_controller.value, key: UniqueKey()),
+                          ),
+                        );
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    },
+                  ),
+                  _getPauseView(),
+                  setPreferredOrientations()
+                ],
+              ),
+              onTap: () {
+                if (_controller.value.value.isPlaying) {
+                  _controller.value.pause();
+                  _hideActionButton.value = false;
+                  print("是否播放:" + _controller.value.value.isPlaying.toString());
+                } else {
+                  _controller.value.play();
+                  videoPrepared.value = true;
+                  _hideActionButton.value = true;
+                  print("是否播放:" + _controller.value.value.isPlaying.toString());
+                }
+              },
             ),
-            onTap: () {
-              if (_controller.value.isPlaying) {
-                _controller.pause();
-                _hideActionButton = false;
-                setState(() {});
-              } else {
-                _controller.play();
-                videoPrepared = true;
-                _hideActionButton = true;
-                setState(() {});
-              }
-            },
           ),
-        ),
-        _getPreviewImage(), //预览图
-        _getRightActionView(), //右侧转发，评论按钮
-        _getLeftActionView(), //左侧文案
-      ],
-    );
+          _getPreviewImage(), //预览图
+          _getRightActionView(), //右侧转发，评论按钮
+          _getLeftActionView(), //左侧文案
+        ],
+      );
+    });
   }
 
   /// 预览图片
@@ -150,14 +151,17 @@ class _CarShortVideoState extends State<CarShortVideo> {
   /// 播放按钮
   Widget _getPauseView() {
     return Offstage(
-      offstage: _hideActionButton,
+      offstage: _hideActionButton.value,
       child: Stack(
         children: <Widget>[
           Align(
             child: Container(
               height: 50.0,
               width: 50.0,
-              child: Image.asset(Assets.imagesIconPlaying),
+              child: Image.asset(
+                Assets.imagesIconPlaying,
+                color: Colors.grey,
+              ),
             ),
             alignment: Alignment.center,
           ),
@@ -172,103 +176,54 @@ class _CarShortVideoState extends State<CarShortVideo> {
       bottom: 0,
       right: 0,
       child: Container(
-        // margin: const EdgeInsets.fromLTRB(0, 0, 15, 120.0),
-        // child: Column(
-        //   children: <Widget>[
-        //     Container(
-        //       child: Column(children: <Widget>[
-        //         LoadAssetImage('icon/icon_video_praise',
-        //             width: 36, height: 36),
-        //         Text(
-        //           "1.6w",
-        //           style: TextStyle(
-        //               fontSize: 15,
-        //               color: Colors.white,
-        //               decoration: TextDecoration.none),
-        //         ),
-        //       ]),
-        //     ),
-        //     SizedBox(height: 8),
-        //     Container(
-        //       child: Column(children: <Widget>[
-        //         LoadAssetImage('icon/icon_video_msg',
-        //             width: 36, height: 36),
-        //         Text(
-        //           "1.3w",
-        //           style: TextStyle(
-        //               fontSize: 15,
-        //               color: Colors.white,
-        //               decoration: TextDecoration.none),
-        //         ),
-        //       ]),
-        //     ),
-        //     SizedBox(height: 8),
-        //     Container(
-        //       child: Column(children: <Widget>[
-        //         LoadAssetImage('icon/icon_video_share',
-        //             width: 36, height: 36),
-        //         Text(
-        //           "2.1w",
-        //           style: TextStyle(
-        //               fontSize: 15,
-        //               color: Colors.white,
-        //               decoration: TextDecoration.none),
-        //         ),
-        //       ]),
-        //     ),
-        //   ],
-        // ),
-      ),
-    );
-  }
-
-  /// 左侧文案
-  Widget _getLeftActionView() {
-    return Positioned(
-      bottom: 0,
-      child: Container(
-        padding: EdgeInsets.all(30),
-        width: ScreenUtil().screenWidth,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+        margin: const EdgeInsets.fromLTRB(0, 0, 15, 80.0),
+        child: Column(
           children: <Widget>[
-            Expanded(
-              child: Text(
-                widget.title,
-                style: TextStyle(fontSize: 16, color: Colors.white),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            GestureDetector(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 11, vertical: 6),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: Color(0XFF000000),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                margin: const EdgeInsets.only(left: 1.0),
-                child: Text(
-                  '查看详情',
-                  style: TextStyle(
-                      fontSize: 12.0,
-                      color: Color(0XFFF36926),
-                      decoration: TextDecoration.none),
+            Container(
+              child: Column(children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    Fluttertoast.showToast(msg: "该功能暂未开放敬请期待！");
+                  },
+                  child: Image.asset(Assets.imagesIconLike, width: 25, height: 25),
                 ),
-              ),
-              onTap: () {
-
-              },
+                SizedBox(height: 3),
+                Text(
+                  "250w",
+                  style: TextStyle(fontSize: 13, color: Colors.white, decoration: TextDecoration.none),
+                ),
+              ]),
             ),
-            SizedBox(
-              width: 20,
+            Container(
+              margin: EdgeInsets.only(top: 25, bottom: 25),
+              child: Column(children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    Fluttertoast.showToast(msg: "该功能暂未开放敬请期待！");
+                  },
+                  child: Image.asset(Assets.imagesIconPinglun, width: 25, height: 25),
+                ),
+                SizedBox(height: 3),
+                Text(
+                  "250w",
+                  style: TextStyle(fontSize: 13, color: Colors.white, decoration: TextDecoration.none),
+                ),
+              ]),
             ),
-            GestureDetector(
-              child: Image.asset(Assets.imagesIconPraise,
-                  width: 21, height: 20),
-              onTap: () {
-                Fluttertoast.showToast(msg: "该功能暂未开放敬请期待！");
-              },
+            Container(
+              child: Column(children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    Fluttertoast.showToast(msg: "该功能暂未开放敬请期待！");
+                  },
+                  child: Image.asset(Assets.imagesIconZhuanfa, width: 25, height: 25),
+                ),
+                SizedBox(height: 3),
+                Text(
+                  "250w",
+                  style: TextStyle(fontSize: 13, color: Colors.white, decoration: TextDecoration.none),
+                ),
+              ]),
             ),
           ],
         ),
@@ -276,10 +231,123 @@ class _CarShortVideoState extends State<CarShortVideo> {
     );
   }
 
+  /// 底部文案
+  Widget _getLeftActionView() {
+    return Positioned(
+      bottom: 0,
+      child: Container(
+        padding: EdgeInsets.only(left: 15, right: 15, bottom: 0),
+        width: ScreenUtil().screenWidth,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(children: [
+              Text(
+                "@" + widget.nickName ?? "",
+                style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ]),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    widget.title,
+                    style: TextStyle(fontSize: 13, color: Colors.white),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                GestureDetector(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(5))),
+                    margin: const EdgeInsets.only(left: 5.0),
+                    child: Text(
+                      '查看详情',
+                      style: TextStyle(fontSize: 12.0, color: Colors.black, decoration: TextDecoration.none),
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+                // SizedBox(
+                //   width: 20,
+                // ),
+                // GestureDetector(
+                //   child: Image.asset(Assets.imagesIconPraise, width: 21, height: 20),
+                //   onTap: () {
+                //     Fluttertoast.showToast(msg: "该功能暂未开放敬请期待！");
+                //   },
+                // ),
+              ],
+            ),
+            Row(children: [
+              Text(
+                widget.group ?? "",
+                style: TextStyle(fontSize: 13, color: Colors.white, fontWeight: FontWeight.bold),
+                overflow: TextOverflow.ellipsis,
+              )
+            ]),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// 横屏
+  Widget setPreferredOrientations() {
+    return Stack(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: (){
+                if(isOrientations.value = true){
+                  // 强制横屏
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.landscapeLeft,
+                    DeviceOrientation.landscapeRight
+                  ]);
+                }else{
+                  // 强制竖屏
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.portraitUp,
+                    DeviceOrientation.portraitDown
+                  ]);
+                }
+              },
+              child: Container(
+                margin: EdgeInsets.only(top: 480),
+                padding: EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
+                decoration: BoxDecoration(
+                  //设置四周圆角 角度
+                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  //设置四周边框
+                  border: new Border.all(width: .2, color: Colors.white),
+                ),
+                child: Row(
+                  children: [
+                    Image.asset(Assets.imagesIconBigScreen,width: 14,height: 14),
+                    SizedBox(width: 5),
+                    Text("${isOrientations.value?"竖屏观看":"全屏观看"}", style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold))
+                  ],
+                ),
+              ),
+            )
+
+          ],
+        )
+
+      ],
+    );
+  }
+
   @override
   void dispose() {
     super.dispose();
-    // eventBus.off(EventVideoPlayPosition + widget.positionTag.toString());
-    _controller.dispose(); //释放播放器资源
+    _controller.value.dispose(); //释放播放器资源
   }
 }
