@@ -66,7 +66,7 @@ class _CarShortVideoState extends State<CarShortVideo> {
       });
     } else {
       await _controller.value.pause().onError((error, stackTrace) {
-        print("play error:{error.toString()}+{url}+");
+        print("pause error:{error.toString()}+{url}+");
       });
     }
     return true;
@@ -88,6 +88,7 @@ class _CarShortVideoState extends State<CarShortVideo> {
                     future: init(),
                     builder: (context, snapshot) {
                       print("连接状态:" + snapshot.connectionState.toString());
+                      // FutureBuilder 用于对异步任务是否完成的判断，展示未完成时的UI；通常用于官方异步函数（不含判断）的处理
                       if (snapshot.connectionState == ConnectionState.done) {
                         return Center(
                           child: AspectRatio(
@@ -103,7 +104,7 @@ class _CarShortVideoState extends State<CarShortVideo> {
                     },
                   ),
                   _getPauseView(),
-                  setPreferredOrientations()
+                  setPreferredOrientations(),
                 ],
               ),
               onTap: () {
@@ -298,51 +299,48 @@ class _CarShortVideoState extends State<CarShortVideo> {
 
   /// 横屏
   Widget setPreferredOrientations() {
-    return Stack(
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: (){
-                if(isOrientations.value = true){
-                  // 强制横屏
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.landscapeLeft,
-                    DeviceOrientation.landscapeRight
-                  ]);
-                }else{
-                  // 强制竖屏
-                  SystemChrome.setPreferredOrientations([
-                    DeviceOrientation.portraitUp,
-                    DeviceOrientation.portraitDown
-                  ]);
-                }
-              },
-              child: Container(
-                margin: EdgeInsets.only(top: 480),
-                padding: EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
-                decoration: BoxDecoration(
-                  //设置四周圆角 角度
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                  //设置四周边框
-                  border: new Border.all(width: .2, color: Colors.white),
-                ),
-                child: Row(
-                  children: [
-                    Image.asset(Assets.imagesIconBigScreen,width: 14,height: 14),
-                    SizedBox(width: 5),
-                    Text("${isOrientations.value?"竖屏观看":"全屏观看"}", style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold))
-                  ],
-                ),
-              ),
-            )
-
-          ],
+    return Align(alignment: Alignment.bottomCenter,child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: (){
+            if(isOrientations.value = true){
+              // 强制横屏
+              SystemChrome.setPreferredOrientations([
+                DeviceOrientation.landscapeLeft,
+                DeviceOrientation.landscapeRight
+              ]);
+            }else{
+              // 强制竖屏
+              SystemChrome.setPreferredOrientations([
+                DeviceOrientation.portraitUp,
+                DeviceOrientation.portraitDown
+              ]);
+            }
+          },
+          child: Container(
+            margin: EdgeInsets.only(bottom: 100),
+            padding: EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 4),
+            decoration: BoxDecoration(
+              //设置四周圆角 角度
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              //设置四周边框
+              border: new Border.all(width: .1, color: Colors.white),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(Assets.imagesIconBigScreen,width: 14,height: 14),
+                SizedBox(width: 5),
+                Text("${isOrientations.value?"竖屏观看":"全屏观看"}", style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold))
+              ],
+            ),
+          ),
         )
-
       ],
-    );
+    ))
+      ;
   }
 
   @override

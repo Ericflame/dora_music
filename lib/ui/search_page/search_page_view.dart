@@ -226,11 +226,8 @@ class _SearchPageState extends State<SearchPage> {
                 state.distance = MediaQuery.of(context).size.height * 0.13;
               });
             },
-            getData: (e) {
-              /// 获取填充列表的回调,返回一个列表
-              logic.getSearchSuggest(e);
-              return state.searchSuggestList;
-            },
+            /// 获取填充列表的回调,返回一个列表
+            getData: logic.getSearchSuggest
           )),
           Container(
             width: 40,

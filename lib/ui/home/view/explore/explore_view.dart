@@ -221,7 +221,7 @@ class _ExploreViewState extends State<ExploreView> {
                       Text(
                         "${data.artistName}",
                         textAlign: TextAlign.right,
-                        style: TextStyle(fontSize: 12, color: Color(0xFF15c5fc)),
+                        style: TextStyle(fontSize: 12, color: Color(0xFFabd9f5),fontWeight: FontWeight.bold),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),

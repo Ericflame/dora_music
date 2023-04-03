@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_advanced/generated/assets.dart';
 import 'package:get/get.dart';
 import '../../../bean/search_suggest_list.dart';
@@ -101,7 +102,6 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
     if (textEditingValue.text == '') {
       return const Iterable<SearchSuggestList>.empty();
     }
-    widget.getData!(inputController.text);
     return widget.getData!(inputController.text);
   }
 
@@ -145,7 +145,10 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
                             padding: EdgeInsets.only(right: 10),
                             child: Image.asset(Assets.imagesIconMusic1, width: 15, height: 15),
                           ),
-                          Text.rich(formSpan(option.keyword ?? "", inputController.text),style: TextStyle(fontSize: 13,color: Colors.black87),)
+                          Text.rich(
+                            formSpan(option.keyword ?? "", inputController.text),
+                            style: TextStyle(fontSize: 13, color: Colors.black87),
+                          )
                         ],
                       ),
                       Divider(
