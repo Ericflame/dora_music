@@ -1,6 +1,6 @@
 import 'package:draggable_widget/draggable_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced/generated/assets.dart';
+import 'package:dora_music/generated/assets.dart';
 
 /// File Name: draggable_demo
 /// Project Name: flutter_test

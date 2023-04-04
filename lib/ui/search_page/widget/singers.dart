@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-
 import '../../../bean/search_artists.dart';
 import '../../../http/service.dart';
 import '../../../utils/eventbus/event_bus_handler.dart';
@@ -13,6 +11,7 @@ import '../../../utils/eventbus/event_bus_handler.dart';
 /// Project Name: flutter_test
 /// Created By Hongzhang Chen On 2023-03-24
 /// Copy Right ©2023-03-24 flutter_test All Right Reserved
+/// 歌手
 class Singers extends StatefulWidget {
   String keywords;
   Singers(this.keywords);

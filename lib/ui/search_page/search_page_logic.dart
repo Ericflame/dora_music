@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced/ui/search_page/search_page_state.dart';
+import 'package:dora_music/ui/search_page/search_page_state.dart';
 import 'package:get/get.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -46,7 +46,7 @@ class SearchPageLogic extends GetxController with GetSingleTickerProviderStateMi
   }
 
   // 获取搜索结果（单曲）
-  // getSearchDetail(String keywords) {
+  // Future getSearchDetail(String keywords) async{
   //   ///type:1 单曲
   //   ///type:1014 视频
   //   ///type:100 歌手

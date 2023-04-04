@@ -1,4 +1,4 @@
-import 'package:flutter_advanced/bean/url_info.dart';
+import 'package:dora_music/bean/url_info.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'creator.dart';

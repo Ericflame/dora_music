@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(flutter_advanced LANGUAGES CXX)
+project(dora_music LANGUAGES CXX)
 
-set(BINARY_NAME "flutter_advanced")
+set(BINARY_NAME "dora_music")
 
 cmake_policy(SET CMP0063 NEW)
 

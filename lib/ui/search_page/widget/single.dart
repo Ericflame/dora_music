@@ -14,7 +14,7 @@ import '../../../utils/eventbus/event_bus_handler.dart';
 /// Project Name: flutter_test
 /// Created By Hongzhang Chen On 2023-03-24
 /// Copy Right ©2023-03-24 flutter_test All Right Reserved
-
+/// 单曲
 class Single extends StatefulWidget {
   String keywords;
   Single(this.keywords);

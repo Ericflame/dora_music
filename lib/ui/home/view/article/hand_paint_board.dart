@@ -4,7 +4,7 @@
 /// Copy Right ©2023-03-21 flutter_test All Right Reserved
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced/generated/assets.dart';
+import 'package:dora_music/generated/assets.dart';
 import 'package:signature/signature.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

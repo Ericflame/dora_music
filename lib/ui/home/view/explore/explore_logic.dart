@@ -1,4 +1,4 @@
-import 'package:flutter_advanced/http/service.dart';
+import 'package:dora_music/http/service.dart';
 import 'package:get/get.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'explore_state.dart';

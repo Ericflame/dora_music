@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced/ui/home/View/singers/singers_detail/singer_detail_album/singer_detail_album_view.dart';
-import 'package:flutter_advanced/ui/home/View/singers/singers_detail/singer_detail_home/singer_detail_home_view.dart';
-import 'package:flutter_advanced/ui/home/View/singers/singers_detail/singer_detail_songs/singer_detail_songs_view.dart';
-import 'package:flutter_advanced/ui/home/View/singers/singers_detail/singer_detail_video/singer_detail_video_view.dart';
+import 'package:dora_music/ui/home/View/singers/singers_detail/singer_detail_album/singer_detail_album_view.dart';
+import 'package:dora_music/ui/home/View/singers/singers_detail/singer_detail_home/singer_detail_home_view.dart';
+import 'package:dora_music/ui/home/View/singers/singers_detail/singer_detail_songs/singer_detail_songs_view.dart';
+import 'package:dora_music/ui/home/View/singers/singers_detail/singer_detail_video/singer_detail_video_view.dart';
 import 'package:get/get.dart';
 
 import 'singers_detail_logic.dart';

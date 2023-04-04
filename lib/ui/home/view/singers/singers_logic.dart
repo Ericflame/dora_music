@@ -3,8 +3,8 @@
 /// Created By Hongzhang Chen On 2023-03-14
 /// Copy Right ©2023-03-14 flutter_test All Right Reserved
 
-import 'package:flutter_advanced/http/service.dart';
-import 'package:flutter_advanced/ui/home/view/singers/singers_state.dart';
+import 'package:dora_music/http/service.dart';
+import 'package:dora_music/ui/home/view/singers/singers_state.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';

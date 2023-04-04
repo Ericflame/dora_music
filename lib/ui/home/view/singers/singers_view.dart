@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced/ui/home/View/singers/singers_detail/singers_detail_view.dart';
-import 'package:flutter_advanced/ui/home/view/singers/singers_logic.dart';
-import 'package:flutter_advanced/ui/home/view/singers/singers_state.dart';
+import 'package:dora_music/ui/home/View/singers/singers_detail/singers_detail_view.dart';
+import 'package:dora_music/ui/home/view/singers/singers_logic.dart';
+import 'package:dora_music/ui/home/view/singers/singers_state.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
@@ -31,16 +31,14 @@ class _SingersViewState extends State<SingersView> {
       return Column(
         children: [
           Container(
-            height: 10,
-          ),
-          Container(
+            margin: EdgeInsets.only(top: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SingerButton("全部", 0),
                 SingerButton("男歌手", 1),
                 SingerButton("女歌手", 2),
-                SingerButton("乐队", 3),
+                SingerButton("组合", 3),
               ],
             ),
           ),
@@ -95,14 +93,14 @@ class _SingersViewState extends State<SingersView> {
           logic.getSingersList();
         },
         child: Container(
-          width: 45,
+          width: 50,
           height: 20,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              color: state.selectIndex.value == index ? Colors.white : Color(0xFFe6f4fd)),
+              color: state.selectIndex.value == index ? Color(0xFFb0daf4) : Colors.white),
           child: Text(
             text,
-            style: TextStyle(fontSize: 12),
+            style: TextStyle(fontSize: 12,color: state.selectIndex.value == index ? Colors.white : Colors.black87),
             textAlign: TextAlign.center,
           ),
         ),
@@ -126,11 +124,6 @@ class _SingersViewState extends State<SingersView> {
                 imageUrl: data.img1v1Url!, width: 60, height: 60,
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
-              // Image.network(
-              //   "${data.img1v1Url}",
-              //   width: 60,
-              //   height: 60,
-              // ),
             ))),
         Text("${data.name}")
       ],

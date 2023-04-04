@@ -1,4 +1,4 @@
-import 'package:flutter_advanced/ui/home/view/songs/songs_state.dart';
+import 'package:dora_music/ui/home/view/songs/songs_state.dart';
 import 'package:get/get.dart';
 
 class SingersLogic extends GetxController with GetSingleTickerProviderStateMixin {

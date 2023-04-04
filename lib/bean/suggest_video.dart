@@ -1,4 +1,4 @@
-import 'package:flutter_advanced/bean/suggest_video_detail.dart';
+import 'package:dora_music/bean/suggest_video_detail.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'suggest_video.g.dart';
 

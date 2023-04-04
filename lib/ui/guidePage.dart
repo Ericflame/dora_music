@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced/generated/assets.dart';
+import 'package:dora_music/generated/assets.dart';
 import 'package:get/get.dart';
 
 import 'bottom_navigationWidget.dart';

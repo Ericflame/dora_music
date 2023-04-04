@@ -1,5 +1,5 @@
-import 'package:flutter_advanced/bean/singers.dart';
-import 'package:flutter_advanced/bean/songs_details.dart';
+import 'package:dora_music/bean/singers.dart';
+import 'package:dora_music/bean/songs_details.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'hot_song.g.dart';
 

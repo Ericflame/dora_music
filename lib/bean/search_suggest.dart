@@ -1,4 +1,4 @@
-import 'package:flutter_advanced/bean/search_suggest_list.dart';
+import 'package:dora_music/bean/search_suggest_list.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'search_suggest.g.dart';
 

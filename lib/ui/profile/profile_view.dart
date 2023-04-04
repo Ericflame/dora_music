@@ -2,7 +2,7 @@ import 'package:appbar_animated/appbar_animated.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_advanced/ui/profile/profile_logic.dart';
+import 'package:dora_music/ui/profile/profile_logic.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 

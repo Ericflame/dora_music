@@ -1,5 +1,5 @@
-import 'package:flutter_advanced/constant.dart';
-import 'package:flutter_advanced/http/httpRequest.dart';
+import 'package:dora_music/constant.dart';
+import 'package:dora_music/http/httpRequest.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../bean/common_response.dart';

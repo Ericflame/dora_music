@@ -1,4 +1,4 @@
-import 'package:flutter_advanced/bean/play_list.dart';
+import 'package:dora_music/bean/play_list.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'singer_details_response.g.dart';

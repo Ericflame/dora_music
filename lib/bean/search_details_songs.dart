@@ -1,5 +1,5 @@
-import 'package:flutter_advanced/bean/search_album.dart';
-import 'package:flutter_advanced/bean/search_artists.dart';
+import 'package:dora_music/bean/search_album.dart';
+import 'package:dora_music/bean/search_artists.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'search_details_songs.g.dart';
 

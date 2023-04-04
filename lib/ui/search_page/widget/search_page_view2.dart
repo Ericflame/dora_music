@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced/ui/search_page/search_page_state.dart';
-import 'package:flutter_advanced/ui/search_page/widget/autocomplete_widget.dart';
+import 'package:dora_music/ui/search_page/search_page_state.dart';
+import 'package:dora_music/ui/search_page/widget/autocomplete_widget.dart';
 import 'package:get/get.dart';
 
 import '../../../bean/hot_search.dart';
