@@ -18,6 +18,9 @@ class CarShortVideo extends StatefulWidget {
   final bool showProgressBar; //是否显示进度条
   final bool showProgressText; //是否显示进度文本
   final int positionTag;
+  final int shareCount;//分享数
+  final int commentCount;//评论数
+  final int praisedCount;//点赞数
 
   CarShortVideo({
     required this.url,
@@ -28,6 +31,9 @@ class CarShortVideo extends StatefulWidget {
     this.showProgressBar = true,
     this.showProgressText = true,
     this.positionTag = 0,
+    this.commentCount = 0,
+    this.praisedCount = 0,
+    this.shareCount = 0
   });
 
   @override
@@ -190,7 +196,7 @@ class _CarShortVideoState extends State<CarShortVideo> {
                 ),
                 SizedBox(height: 3),
                 Text(
-                  "250w",
+                  "${widget.praisedCount}",
                   style: TextStyle(fontSize: 13, color: Colors.white, decoration: TextDecoration.none),
                 ),
               ]),
@@ -206,7 +212,7 @@ class _CarShortVideoState extends State<CarShortVideo> {
                 ),
                 SizedBox(height: 3),
                 Text(
-                  "250w",
+                  "${widget.commentCount}",
                   style: TextStyle(fontSize: 13, color: Colors.white, decoration: TextDecoration.none),
                 ),
               ]),
@@ -221,7 +227,7 @@ class _CarShortVideoState extends State<CarShortVideo> {
                 ),
                 SizedBox(height: 3),
                 Text(
-                  "250w",
+                  "${widget.shareCount}",
                   style: TextStyle(fontSize: 13, color: Colors.white, decoration: TextDecoration.none),
                 ),
               ]),

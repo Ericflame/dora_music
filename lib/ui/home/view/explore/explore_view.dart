@@ -185,7 +185,7 @@ class _ExploreViewState extends State<ExploreView> {
                     child:
                     CachedNetworkImage(
                       imageUrl: data.cover!, width: 60, height: 60,
-                      // placeholder: (context, url) => CircularProgressIndicator(color: Colors.black54,strokeWidth: 4,),
+                      placeholder: (context, url) => Padding(padding: EdgeInsets.all(20),child: CircularProgressIndicator(color: Colors.black54,strokeWidth: 2)),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                     // Image.network(
@@ -273,9 +273,12 @@ class _ExploreViewState extends State<ExploreView> {
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 // margin: EdgeInsets.only(top: 8),
-                child: Image.network(
-                  "${data.coverImgUrl}",
-                )),
+                child: CachedNetworkImage(
+                  imageUrl: "${data.coverImgUrl}",
+                  placeholder: (context, url) => Padding(padding: EdgeInsets.all(20),child: CircularProgressIndicator(color: Colors.black54,strokeWidth: 2)),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+                ),
             SizedBox(
               width: 10,
             ),
@@ -350,9 +353,13 @@ class _ExploreViewState extends State<ExploreView> {
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 // margin: EdgeInsets.only(top: 8),
-                child: Image.network(
-                  "${data.picUrl}",
-                )),
+                child:
+                CachedNetworkImage(
+                  imageUrl: "${data.picUrl}",
+                  placeholder: (context, url) => Padding(padding: EdgeInsets.all(20),child: CircularProgressIndicator(color: Colors.black54,strokeWidth: 2)),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+                ),
             SizedBox(
               width: 10,
             ),

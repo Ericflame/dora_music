@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced/generated/assets.dart';
 import 'package:get/get.dart';
 import '../../../bean/search_suggest_list.dart';
+import '../../../utils/eventbus/event_bus_handler.dart';
 
 class BuildAutoComplete extends StatefulWidget {
   Function? clearText;
@@ -11,7 +14,17 @@ class BuildAutoComplete extends StatefulWidget {
   String? hintText;
   Color? color;
   int? maxLength;
-  BuildAutoComplete({this.clearText, this.getData, this.onSelected, this.color, this.hintText, this.maxLength});
+  Color? searchButtonColor;
+  Function? clickCallBack;
+  BuildAutoComplete(
+      {this.clearText,
+      this.getData,
+      this.onSelected,
+      this.color,
+      this.hintText,
+      this.maxLength,
+      this.searchButtonColor,
+      this.clickCallBack});
 
   @override
   State<BuildAutoComplete> createState() => _BuildAutoCompleteState();
@@ -20,12 +33,20 @@ class BuildAutoComplete extends StatefulWidget {
 class _BuildAutoCompleteState extends State<BuildAutoComplete> {
   TextEditingController inputController = TextEditingController();
   FocusNode _focusNode = FocusNode();
+  StreamSubscription? streamSubscription;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    streamSubscription = EventBusHandler.listen((event) {
+      if (event.code == "MODIFY_SEARCH") {
+        print("刷新搜索内容");
+        inputController.text = event.data??"";
+      }
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,52 +69,63 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
       VoidCallback onFieldSubmitted) {
     inputController = textEditingController;
     _focusNode = focusNode;
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      constraints: BoxConstraints(
-        maxHeight: 36,
-        minHeight: 36,
-      ),
-      decoration: BoxDecoration(
-        color: widget.color ?? Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: TextFormField(
-        style: TextStyle(fontSize: 15, color: Colors.black54),
-        maxLength: widget.maxLength ?? 20,
-        focusNode: _focusNode,
-        keyboardType: TextInputType.text,
-        controller: inputController,
-        textInputAction: TextInputAction.search,
-        decoration: InputDecoration(
-          hintStyle: TextStyle(fontSize: 13),
-          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)), borderSide: BorderSide.none),
-          filled: true,
-          fillColor: Colors.white,
-          hintText: widget.hintText ?? "请输入关键字",
-          // isCollapsed: true,
-          contentPadding: EdgeInsets.only(top: 0, bottom: 0),
-          prefixIcon: Icon(
-            Icons.search,
-            size: 20,
+    return Row(
+      children: [
+        Expanded(
+            child: Container(
+          margin: EdgeInsets.symmetric(vertical: 10),
+          constraints: BoxConstraints(
+            maxHeight: 36,
+            minHeight: 36,
           ),
-          counterText: "",
-          suffixIcon: GestureDetector(
-              onTap: () {
-                setState(() {
-                  widget.clearText!();
-                  inputController.text = "";
-                });
-              },
-              child: Icon(Icons.cancel, size: 15, color: Colors.grey)),
-        ),
-        onFieldSubmitted: (String value) {
-          _focusNode.unfocus();
-          widget.onSelected!(null);
-          // logic.currentPage = 1;
-          // logic.getListData();
-        },
-      ),
+          decoration: BoxDecoration(
+            color: widget.color ?? Colors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: TextFormField(
+            style: TextStyle(fontSize: 15, color: Colors.black54),
+            maxLength: widget.maxLength ?? 20,
+            focusNode: _focusNode,
+            keyboardType: TextInputType.text,
+            controller: inputController,
+            textInputAction: TextInputAction.search,
+            decoration: InputDecoration(
+              hintStyle: TextStyle(fontSize: 13),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)), borderSide: BorderSide.none),
+              filled: true,
+              fillColor: Colors.white,
+              hintText: widget.hintText ?? "请输入关键字",
+              // isCollapsed: true,
+              contentPadding: EdgeInsets.only(top: 0, bottom: 0),
+              prefixIcon: Icon(
+                Icons.search,
+                size: 20,
+              ),
+              counterText: "",
+              suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      widget.clearText!();
+                      inputController.text = "";
+                    });
+                  },
+                  child: Icon(Icons.cancel, size: 15, color: Colors.grey)),
+            ),
+            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[^\s]*$'))],
+            onFieldSubmitted: (String value) {
+              if (inputController.text.isNotEmpty) {
+                _focusNode.unfocus();
+                widget.onSelected!(null);
+              }
+
+              // logic.currentPage = 1;
+              // logic.getListData();
+            },
+          ),
+        )),
+        searchButton()
+      ],
     );
   }
 
@@ -186,5 +218,30 @@ class _BuildAutoCompleteState extends State<BuildAutoComplete> {
       span.add(TextSpan(text: src));
     }
     return TextSpan(children: span);
+  }
+
+  ///搜索按钮
+  Widget searchButton() {
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: TextButton(
+        onPressed: () {
+          setState(() {
+            if (inputController.text.isNotEmpty) {
+              _focusNode.unfocus();
+              widget.clickCallBack!(inputController.text);
+            }
+          });
+        },
+        child: Image.asset(
+          Assets.imagesIcSearch,
+          color: widget.searchButtonColor,
+        ),
+      ),
+    );
   }
 }

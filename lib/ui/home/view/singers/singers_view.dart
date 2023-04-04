@@ -122,8 +122,8 @@ class _SingersViewState extends State<SingersView> {
                 child: ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: CachedNetworkImage(
+                placeholder: (context, url) => Padding(padding: EdgeInsets.all(20),child: CircularProgressIndicator(color: Colors.black54,strokeWidth: 2)),
                 imageUrl: data.img1v1Url!, width: 60, height: 60,
-                // placeholder: (context, url) => CircularProgressIndicator(color: Colors.black54,strokeWidth: 4,),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
               // Image.network(

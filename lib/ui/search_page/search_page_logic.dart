@@ -44,4 +44,25 @@ class SearchPageLogic extends GetxController with GetSingleTickerProviderStateMi
     // EasyLoading.show();
     return await Service.getSearchSuggest(param);
   }
+
+  // 获取搜索结果（单曲）
+  // getSearchDetail(String keywords) {
+  //   ///type:1 单曲
+  //   ///type:1014 视频
+  //   ///type:100 歌手
+  //   ///type:10 专辑
+  //   ///type:1000 歌单
+  //   ///type:1009 主播电台
+  //   ///type:1002 用户
+  //   Map<String, dynamic> param = {
+  //     "keywords":keywords,
+  //     "type": 1
+  //   };
+  //   EasyLoading.show();
+  //   Service.getSearchDetail(param).then((value) {
+  //     if (value != null) {
+  //       EasyLoading.dismiss();
+  //     }
+  //   });
+  // }
 }

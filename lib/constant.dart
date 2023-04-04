@@ -18,4 +18,5 @@ class API{
   static String getSearchDefault = Constant.baseUrl + "/search/default";//默认搜索关键词
   static String getSearchSuggest = Constant.baseUrl + "/search/suggest";//搜索建议
   static String getSuggestVideo = Constant.baseUrl + "/video/timeline/recommend";//获取推荐视频
+  static String getSearchDetail = Constant.baseUrl + "/search";//获取搜索结果
 }

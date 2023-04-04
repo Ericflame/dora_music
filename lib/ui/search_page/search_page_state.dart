@@ -13,9 +13,10 @@ class SearchState {
   var hotSearchDetail = <HotSearch>[].obs;
   var searchSuggestList = <SearchSuggestList>[].obs;
   double distance = ScreenUtil().screenHeight * 0.25;
+  var showResults = false.obs;
+  var keyWords = "".obs;
 
   List<Tab> tabs = [
-    Tab(text: "综合"),
     Tab(text: "单曲"),
     Tab(text: "视频"),
     Tab(text: "歌手"),

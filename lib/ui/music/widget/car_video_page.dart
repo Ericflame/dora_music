@@ -55,6 +55,9 @@ class _CarVideoPageState extends State<CarVideoPage> {
               group: "",
               positionTag: i,
               title: element.data!.title ?? "",
+              shareCount: element.data!.shareCount ?? 0,
+              commentCount: element.data!.commentCount ?? 0,
+              praisedCount: element.data!.praisedCount ?? 0,
             ),
           ));
         }

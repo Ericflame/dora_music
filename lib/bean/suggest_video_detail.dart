@@ -9,6 +9,9 @@ part 'suggest_video_detail.g.dart';
 class SuggestVideoDetail {
   UrlInfo? urlInfo;
   String ? title;
+  int ? shareCount;
+  int ? commentCount;
+  int ? praisedCount;
   Creator ? creator;
   List<Group> ? videoGroup;
   SuggestVideoDetail();

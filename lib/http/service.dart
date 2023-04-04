@@ -13,6 +13,7 @@ import '../bean/play_list.dart';
 import '../bean/play_list_response.dart';
 import '../bean/radio_list.dart';
 import '../bean/radio_list_response.dart';
+import '../bean/search_details.dart';
 import '../bean/search_suggest.dart';
 import '../bean/search_suggest_list.dart';
 import '../bean/singer_album_response.dart';
@@ -197,6 +198,22 @@ class Service {
     }else{
       EasyLoading.dismiss();
       return [];
+    }
+  }
+
+  ///  获取搜索结果
+  static Future<SearchDetails> getSearchDetail(Map<String, dynamic> param) async {
+    final response = await HttpRequest.getInstance().futureGet(
+      API.getSearchDetail,
+      queryParameters: param,
+    );
+    if (response != null) {
+      RadioListResponse result = RadioListResponse.fromJson(response, (json) => json);
+      SearchDetails searchDetails = SearchDetails.fromJson(result.result);
+      return searchDetails;
+    }else{
+      EasyLoading.dismiss();
+      return SearchDetails();
     }
   }
 }
