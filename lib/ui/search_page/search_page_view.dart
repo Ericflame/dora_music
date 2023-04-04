@@ -193,12 +193,12 @@ class _SearchPageState extends State<SearchPage> {
             controller: logic.state.controller,
             children: [
               KeepAliveWrapper(child: Single(state.keyWords.value)),
-              KeepAliveWrapper(child: Video()),
+              KeepAliveWrapper(child: Video(state.keyWords.value)),
               KeepAliveWrapper(child: Singers(state.keyWords.value)),
-              KeepAliveWrapper(child: Album()),
-              KeepAliveWrapper(child: PlayList()),
-              KeepAliveWrapper(child: RadioStation()),
-              KeepAliveWrapper(child: Users())
+              KeepAliveWrapper(child: Album(state.keyWords.value)),
+              KeepAliveWrapper(child: PlayList(state.keyWords.value)),
+              KeepAliveWrapper(child: RadioStation(state.keyWords.value)),
+              KeepAliveWrapper(child: Users(state.keyWords.value))
             ],
           ))
         ],

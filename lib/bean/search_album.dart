@@ -1,3 +1,4 @@
+import 'package:dora_music/bean/search_artists.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'search_album.g.dart';
 
@@ -5,6 +6,9 @@ part 'search_album.g.dart';
 class SearchAlbum {
   int? id;
   String? name;
+  String? url;
+  List<SearchArtists> ? artist;
+  int ? publishTime;
 
   SearchAlbum();
   factory SearchAlbum.fromJson(Map<String, dynamic> srcJson) => _$SearchAlbumFromJson(srcJson);

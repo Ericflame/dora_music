@@ -10,8 +10,8 @@ import '../../../http/service.dart';
 /// 视频
 
 class Video extends StatefulWidget {
-  const Video({Key? key}) : super(key: key);
-
+  String keywords;
+  Video(this.keywords);
   @override
   State<Video> createState() => _VideoState();
 }
@@ -21,6 +21,7 @@ class _VideoState extends State<Video> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getSearchDetail(widget.keywords);
   }
 
   // 获取搜索结果（视频）
@@ -28,7 +29,8 @@ class _VideoState extends State<Video> {
     ///type:1014 视频
     Map<String, dynamic> param = {
       "keywords":keywords,
-      "type": 1002
+      "limit":6,
+      "type": 1014
     };
     EasyLoading.show();
     Service.getSearchDetail(param).then((value) {

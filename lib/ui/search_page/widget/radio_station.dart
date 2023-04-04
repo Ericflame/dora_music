@@ -10,7 +10,8 @@ import '../../../http/service.dart';
 /// 主播电台
 
 class RadioStation extends StatefulWidget {
-  const RadioStation({Key? key}) : super(key: key);
+  String keywords;
+  RadioStation(this.keywords);
 
   @override
   State<RadioStation> createState() => _RadioStationState();
@@ -21,6 +22,7 @@ class _RadioStationState extends State<RadioStation> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getSearchDetail(widget.keywords);
   }
 
   // 获取搜索结果（主播电台）

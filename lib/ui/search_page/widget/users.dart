@@ -10,7 +10,8 @@ import '../../../http/service.dart';
 /// 用户
 
 class Users extends StatefulWidget {
-  const Users({Key? key}) : super(key: key);
+  String keywords;
+  Users(this.keywords);
 
   @override
   State<Users> createState() => _UsersState();
@@ -21,6 +22,7 @@ class _UsersState extends State<Users> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getSearchDetail(widget.keywords);
   }
 
   // 获取搜索结果（用户）

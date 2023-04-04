@@ -10,8 +10,8 @@ import '../../../http/service.dart';
 /// 歌单
 
 class PlayList extends StatefulWidget {
-  const PlayList({Key? key}) : super(key: key);
-
+  String keywords;
+  PlayList(this.keywords);
   @override
   State<PlayList> createState() => _PlayListState();
 }
@@ -21,6 +21,7 @@ class _PlayListState extends State<PlayList> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getSearchDetail(widget.keywords);
   }
 
   // 获取搜索结果（歌单）
@@ -28,7 +29,8 @@ class _PlayListState extends State<PlayList> {
     ///type:1000 歌单
     Map<String, dynamic> param = {
       "keywords":keywords,
-      "type": 1000
+      "type": 1000,
+      "limit":12
     };
     EasyLoading.show();
     Service.getSearchDetail(param).then((value) {

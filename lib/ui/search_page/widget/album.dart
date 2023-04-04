@@ -10,7 +10,8 @@ import '../../../http/service.dart';
 /// 专辑
 
 class Album extends StatefulWidget {
-
+  String keywords;
+  Album(this.keywords);
   @override
   State<Album> createState() => _AlbumState();
 }
@@ -20,6 +21,7 @@ class _AlbumState extends State<Album> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getSearchDetail(widget.keywords);
   }
 
   // 获取搜索结果（专辑）
@@ -27,7 +29,8 @@ class _AlbumState extends State<Album> {
     ///type:10 专辑
     Map<String, dynamic> param = {
       "keywords":keywords,
-      "type": 10
+      "type": 10,
+      "limit":12
     };
     EasyLoading.show();
     Service.getSearchDetail(param).then((value) {
