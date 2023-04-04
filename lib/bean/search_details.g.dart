@@ -15,6 +15,21 @@ SearchDetails _$SearchDetailsFromJson(Map<String, dynamic> json) =>
           .toList()
       ..artists = (json['artists'] as List<dynamic>?)
           ?.map((e) => SearchArtists.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..videos = (json['videos'] as List<dynamic>?)
+          ?.map((e) => SearchVideos.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..albums = (json['albums'] as List<dynamic>?)
+          ?.map((e) => SearchAlbum.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..playlists = (json['playlists'] as List<dynamic>?)
+          ?.map((e) => SearchPlayLists.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..dj = (json['dj'] as List<dynamic>?)
+          ?.map((e) => SearchDj.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..userprofiles = (json['userprofiles'] as List<dynamic>?)
+          ?.map((e) => SearchUsers.fromJson(e as Map<String, dynamic>))
           .toList();
 
 Map<String, dynamic> _$SearchDetailsToJson(SearchDetails instance) =>
@@ -23,4 +38,9 @@ Map<String, dynamic> _$SearchDetailsToJson(SearchDetails instance) =>
       'songCount': instance.songCount,
       'songs': instance.songs,
       'artists': instance.artists,
+      'videos': instance.videos,
+      'albums': instance.albums,
+      'playlists': instance.playlists,
+      'dj': instance.dj,
+      'userprofiles': instance.userprofiles,
     };
