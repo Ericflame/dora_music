@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../http/service.dart';
+import '../../../utils/eventbus/event_bus_handler.dart';
 
 /// File Name: video
 /// Project Name: flutter_test
@@ -17,11 +20,18 @@ class Video extends StatefulWidget {
 }
 
 class _VideoState extends State<Video> {
+  StreamSubscription? streamSubscription;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getSearchDetail(widget.keywords);
+    streamSubscription = EventBusHandler.listen((event) {
+      if (event.code == "1") {
+        print("视频列表刷新");
+        getSearchDetail(event.data);
+      }
+    });
   }
 
   // 获取搜索结果（视频）

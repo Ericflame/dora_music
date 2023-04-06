@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../http/service.dart';
+import '../../../utils/eventbus/event_bus_handler.dart';
 
 /// File Name: users
 /// Project Name: flutter_test
@@ -18,11 +21,18 @@ class Users extends StatefulWidget {
 }
 
 class _UsersState extends State<Users> {
+  StreamSubscription? streamSubscription;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getSearchDetail(widget.keywords);
+    streamSubscription = EventBusHandler.listen((event) {
+      if (event.code == "6") {
+        print("用户列表刷新");
+        getSearchDetail(event.data);
+      }
+    });
   }
 
   // 获取搜索结果（用户）

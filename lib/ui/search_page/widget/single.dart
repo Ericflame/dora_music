@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-import '../../../bean/search_details_songs.dart';
+import '../../../bean/search_songs.dart';
 import '../../../common/E3Classical.dart';
 import '../../../generated/assets.dart';
 import '../../../http/service.dart';
@@ -24,7 +24,7 @@ class Single extends StatefulWidget {
 
 class _SingleState extends State<Single> {
   EasyRefreshController refreshController = EasyRefreshController();
-  var singleSongList = <SearchDetailsSongs>[].obs;
+  var singleSongList = <SearchSongs>[].obs;
   StreamSubscription? streamSubscription;
   @override
   void initState() {
@@ -71,7 +71,7 @@ class _SingleState extends State<Single> {
   }
 
   Widget SingleItem(BuildContext context, int index) {
-    SearchDetailsSongs item = singleSongList[index];
+    SearchSongs item = singleSongList[index];
     return GestureDetector(
       onTap: () {},
       child: Container(

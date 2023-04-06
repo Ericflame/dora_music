@@ -1,29 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'search_album.dart';
+part of 'search_songs.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SearchAlbum _$SearchAlbumFromJson(Map<String, dynamic> json) => SearchAlbum()
+SearchSongs _$SearchSongsFromJson(Map<String, dynamic> json) => SearchSongs()
   ..id = json['id'] as int?
   ..name = json['name'] as String?
-  ..url = json['url'] as String?
   ..artists = (json['artists'] as List<dynamic>?)
       ?.map((e) => SearchArtists.fromJson(e as Map<String, dynamic>))
       .toList()
-  ..artist = json['artist'] == null
+  ..album = json['album'] == null
       ? null
-      : SearchArtists.fromJson(json['artist'] as Map<String, dynamic>)
-  ..publishTime = json['publishTime'] as int?;
+      : SearchAlbum.fromJson(json['album'] as Map<String, dynamic>);
 
-Map<String, dynamic> _$SearchAlbumToJson(SearchAlbum instance) =>
+Map<String, dynamic> _$SearchSongsToJson(SearchSongs instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'url': instance.url,
       'artists': instance.artists,
-      'artist': instance.artist,
-      'publishTime': instance.publishTime,
+      'album': instance.album,
     };

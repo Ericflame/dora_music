@@ -1,6 +1,6 @@
 import 'package:dora_music/bean/search_album.dart';
 import 'package:dora_music/bean/search_artists.dart';
-import 'package:dora_music/bean/search_details_songs.dart';
+import 'package:dora_music/bean/search_songs.dart';
 import 'package:dora_music/bean/search_dj.dart';
 import 'package:dora_music/bean/search_play_lists.dart';
 import 'package:dora_music/bean/search_users.dart';
@@ -12,7 +12,7 @@ part 'search_details.g.dart';
 class SearchDetails {
   bool? hasMore;
   int? songCount;
-  List<SearchDetailsSongs>? songs;
+  List<SearchSongs> ? songs;
   List<SearchArtists> ? artists;
   List<SearchVideos> ? videos;
   List<SearchAlbum> ? albums;

@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../http/service.dart';
+import '../../../utils/eventbus/event_bus_handler.dart';
 
 /// File Name: playlist
 /// Project Name: flutter_test
@@ -17,11 +20,18 @@ class PlayList extends StatefulWidget {
 }
 
 class _PlayListState extends State<PlayList> {
+  StreamSubscription? streamSubscription;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getSearchDetail(widget.keywords);
+    streamSubscription = EventBusHandler.listen((event) {
+      if (event.code == "4") {
+        print("歌单列表刷新");
+        getSearchDetail(event.data);
+      }
+    });
   }
 
   // 获取搜索结果（歌单）

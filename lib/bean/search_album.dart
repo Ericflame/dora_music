@@ -7,7 +7,8 @@ class SearchAlbum {
   int? id;
   String? name;
   String? url;
-  List<SearchArtists> ? artist;
+  List<SearchArtists> ? artists;
+  SearchArtists ? artist;
   int ? publishTime;
 
   SearchAlbum();

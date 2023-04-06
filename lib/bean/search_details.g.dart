@@ -11,7 +11,7 @@ SearchDetails _$SearchDetailsFromJson(Map<String, dynamic> json) =>
       ..hasMore = json['hasMore'] as bool?
       ..songCount = json['songCount'] as int?
       ..songs = (json['songs'] as List<dynamic>?)
-          ?.map((e) => SearchDetailsSongs.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => SearchSongs.fromJson(e as Map<String, dynamic>))
           .toList()
       ..artists = (json['artists'] as List<dynamic>?)
           ?.map((e) => SearchArtists.fromJson(e as Map<String, dynamic>))
