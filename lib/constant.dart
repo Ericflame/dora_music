@@ -1,6 +1,6 @@
 class Constant {
   // static String baseUrl = "https://netease-cloud-music-api-crete722p-hannah-bingo.vercel.app";
-  // static String baseUrl = "http://localhost:3000/";
+  // static String baseUrl = "http://localhost:3000";
   static String baseUrl = "https://musicapi.adicw.cn";
 }
 

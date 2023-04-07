@@ -7,7 +7,10 @@ import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../../generated/assets.dart';
+import '../../../utils/eventbus/event_bus_handler.dart';
+import '../../../utils/eventbus/event_object.dart';
 import 'car_video_page.dart';
+import 'movie_land_scape.dart';
 
 class CarShortVideo extends StatefulWidget {
   final String url; //视频地址
@@ -90,24 +93,11 @@ class _CarShortVideoState extends State<CarShortVideo> {
             child: GestureDetector(
               child: Stack(
                 children: <Widget>[
-                  FutureBuilder(
-                    future: init(),
-                    builder: (context, snapshot) {
-                      print("连接状态:" + snapshot.connectionState.toString());
-                      // FutureBuilder 用于对异步任务是否完成的判断，展示未完成时的UI；通常用于官方异步函数（不含判断）的处理
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        return Center(
-                          child: AspectRatio(
-                            aspectRatio: _controller.value.value.aspectRatio,
-                            child: VideoPlayer(_controller.value, key: UniqueKey()),
-                          ),
-                        );
-                      } else {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                    },
+                  Center(
+                    child: AspectRatio(
+                      aspectRatio: _controller.value.value.aspectRatio,
+                      child: VideoPlayer(_controller.value, key: UniqueKey()),
+                    ),
                   ),
                   _getPauseView(),
                   setPreferredOrientations(),
@@ -311,19 +301,26 @@ class _CarShortVideoState extends State<CarShortVideo> {
       children: [
         GestureDetector(
           onTap: (){
-            if(isOrientations.value = true){
-              // 强制横屏
-              SystemChrome.setPreferredOrientations([
-                DeviceOrientation.landscapeLeft,
-                DeviceOrientation.landscapeRight
-              ]);
-            }else{
-              // 强制竖屏
-              SystemChrome.setPreferredOrientations([
-                DeviceOrientation.portraitUp,
-                DeviceOrientation.portraitDown
-              ]);
-            }
+            /// 强制性全屏（无法隐藏底部导航栏）
+            // if(isOrientations.value == false){
+            //   // 强制横屏
+            //   SystemChrome.setPreferredOrientations([
+            //     DeviceOrientation.landscapeLeft,
+            //     // DeviceOrientation.landscapeRight
+            //   ]);
+            //   isOrientations.value = true;
+            // }else{
+            //   // 强制竖屏
+            //   SystemChrome.setPreferredOrientations([
+            //     DeviceOrientation.portraitUp,
+            //     // DeviceOrientation.portraitDown
+            //   ]);
+            //   isOrientations.value = false;
+            // }
+            /// 跳转到全屏页面
+            Get.to(MovieBigLandScape(
+                videoController:
+                _controller.value));
           },
           child: Container(
             margin: EdgeInsets.only(bottom: 100),
